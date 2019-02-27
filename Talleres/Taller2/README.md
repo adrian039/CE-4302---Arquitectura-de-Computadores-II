@@ -8,7 +8,7 @@ gcc -o saxpy -fopenmp saxpy.c
 ./saxpy
 ```
 ### SAXPY Parallel
-Este algoritmo es el mismo que el anterior solo que utiliza los pragmas definidos por OPENMP para mejorar el rendimiento del programa. Para compilar se debera de utilizar los siguientes comandos igualmente dentro de la carpeta Arqui-Taller2.
+Este algoritmo es el mismo que el anterior solo que utiliza los pragmas definidos por OPENMP para mejorar el rendimiento del programa.
 
 ```bash
 gcc -o saxpy_par -fopenmp saxpy_par.c
@@ -25,6 +25,7 @@ gcc -o RealMM -fopenmp RealMM.c
 ```
 
 ### Multiplicación de Matrices Parallel
+Este algoritmo es el mismo que el anterior solo que utiliza los pragmas definidos por OPENMP para mejorar el rendimiento del programa.
 ```bash
 gcc -o RealMM_par -fopenmp RealMM_par.c
 ./RealMM_par
