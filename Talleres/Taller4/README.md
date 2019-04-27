@@ -1,4 +1,4 @@
-# Taller 2 - Arquitectura de Computadores II 
+# Taller 4 - Arquitectura de Computadores II 
 
 ## Comandos para correr cada archivo
 
