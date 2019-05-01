@@ -531,18 +531,19 @@ char *yytext;
 #line 2 "vCompiler.l"
   /*_____Definition section_____literal c++ code between single "%"_____*/
 
-     /*Necesary imports*/
-  #include <string.h>
-  #include <stdlib.h>
 
   /*Necesary files to work.*/
   #include "y.tab.h" //yacc output file. Necesary to work.
 
+  /*Necesary imports*/
+  #include <string>
+  #include <string.h>
+  #include <stdlib.h>
+
   /*Function declaration*/
- // void yyerror(std::string S); // Define error message
-#line 544 "lex.yy.c"
-/*tag    [a-zA-Z_][a-zA-Z0-9_]*/
+ void yyerror(std::string S); // Define error message
 #line 546 "lex.yy.c"
+#line 547 "lex.yy.c"
 
 #define INITIAL 0
 
@@ -759,13 +760,13 @@ YY_DECL
 		}
 
 	{
-#line 22 "vCompiler.l"
+#line 23 "vCompiler.l"
 
-#line 24 "vCompiler.l"
+#line 25 "vCompiler.l"
   /*_____Rules section_____*/
  
   /*Operation keywords*/
-#line 769 "lex.yy.c"
+#line 770 "lex.yy.c"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -834,152 +835,152 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 27 "vCompiler.l"
+#line 28 "vCompiler.l"
 {yylval.id=strdup(yytext); return vaddition;} //VAdd = vector addition
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 28 "vCompiler.l"
+#line 29 "vCompiler.l"
 {yylval.id=strdup(yytext); return vsubtra;} //Vsub = vector substraction
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 29 "vCompiler.l"
+#line 30 "vCompiler.l"
 {yylval.id=strdup(yytext); return vxor;} //Vxor = vector xor
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 30 "vCompiler.l"
+#line 31 "vCompiler.l"
 {yylval.id=strdup(yytext); return vmultiple;} //vmul = vector multiplication  
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 31 "vCompiler.l"
+#line 32 "vCompiler.l"
 {yylval.id=strdup(yytext); return vadditions;} //VAdds = vector addition scalar
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 32 "vCompiler.l"
+#line 33 "vCompiler.l"
 {yylval.id=strdup(yytext); return vsubtras;} //Vsub = vector substraction scalar
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 33 "vCompiler.l"
+#line 34 "vCompiler.l"
 {yylval.id=strdup(yytext); return vxors;} //Vxor = vector xor scalar
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 34 "vCompiler.l"
+#line 35 "vCompiler.l"
 {yylval.id=strdup(yytext); return vmultiples;} //vmul = vector multiplication scalar  
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 35 "vCompiler.l"
+#line 36 "vCompiler.l"
 {yylval.id=strdup(yytext); return vadditioni;} //VAdd = vector addition inmediate
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 36 "vCompiler.l"
+#line 37 "vCompiler.l"
 {yylval.id=strdup(yytext); return vsubtrai;} //Vsub = vector substraction inmediate
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 37 "vCompiler.l"
+#line 38 "vCompiler.l"
 {yylval.id=strdup(yytext); return vxori;} //Vxor = vector xor inmediate
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 38 "vCompiler.l"
+#line 39 "vCompiler.l"
 {yylval.id=strdup(yytext); return vmultiplei;} //vmul = vector multiplication inmediate
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 39 "vCompiler.l"
+#line 40 "vCompiler.l"
 {yylval.id=strdup(yytext); return vrot;} //vrot = vector rotation 
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 40 "vCompiler.l"
+#line 41 "vCompiler.l"
 {yylval.id=strdup(yytext); return vrotr;} //vrotr = vector rotation saving the result in other register
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 41 "vCompiler.l"
+#line 42 "vCompiler.l"
 {yylval.id=strdup(yytext); return vstore;} //vst = vector store
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 42 "vCompiler.l"
+#line 43 "vCompiler.l"
 {yylval.id=strdup(yytext); return vload;} //vld = vector load
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 43 "vCompiler.l"
+#line 44 "vCompiler.l"
 {yylval.id=strdup(yytext); return smove;} //smov = scalar move
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 44 "vCompiler.l"
-{yylval.id=strdup(yytext); return repeat;} //REPEAT
+#line 45 "vCompiler.l"
+{yylval.id=strdup(yytext); return vrepeat;} //REPEAT
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 45 "vCompiler.l"
-{yylval.id=strdup(yytext); return endrepeat;} //REPEAT
+#line 46 "vCompiler.l"
+{yylval.id=strdup(yytext); return vendrepeat;} //REPEAT
 	YY_BREAK
 /* Vector Registers*/
 case 20:
 YY_RULE_SETUP
-#line 48 "vCompiler.l"
+#line 49 "vCompiler.l"
 {yylval.id=strdup(yytext); return vreg;} //vector registers
 	YY_BREAK
 /* Scalar Registers*/
 case 21:
 YY_RULE_SETUP
-#line 51 "vCompiler.l"
+#line 52 "vCompiler.l"
 {yylval.id=strdup(yytext); return sreg;} //scalar registers
 	YY_BREAK
 /*Immediate*/
 case 22:
 YY_RULE_SETUP
-#line 54 "vCompiler.l"
+#line 55 "vCompiler.l"
 {yylval.id=strdup(yytext); return immediate;}
 	YY_BREAK
 /*Comments*/
 case 23:
 YY_RULE_SETUP
-#line 57 "vCompiler.l"
+#line 58 "vCompiler.l"
 {yylval.id=strdup(yytext); return commentary;}
 	YY_BREAK
 /*Numbers*/
 case 24:
 YY_RULE_SETUP
-#line 60 "vCompiler.l"
+#line 61 "vCompiler.l"
 {yylval.num=atoi(yytext); return number;}
 	YY_BREAK
 /*White Spaces*/
 case 25:
 /* rule 25 can match eol */
 YY_RULE_SETUP
-#line 63 "vCompiler.l"
+#line 64 "vCompiler.l"
 {return yytext[0];}
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
-#line 64 "vCompiler.l"
+#line 65 "vCompiler.l"
 {;}
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
-#line 65 "vCompiler.l"
-{;}
+#line 66 "vCompiler.l"
+{yyerror("caracter invalido");}
 	YY_BREAK
 case 28:
 YY_RULE_SETUP
-#line 66 "vCompiler.l"
+#line 67 "vCompiler.l"
 ECHO;
 	YY_BREAK
-#line 983 "lex.yy.c"
+#line 984 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1996,7 +1997,7 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 66 "vCompiler.l"
+#line 67 "vCompiler.l"
 
 int yywrap(void){
   return 1;

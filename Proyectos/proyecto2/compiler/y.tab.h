@@ -67,8 +67,8 @@ extern int yydebug;
     immediate = 277,
     commentary = 278,
     number = 279,
-    repeat = 280,
-    endrepeat = 281
+    vrepeat = 280,
+    vendrepeat = 281
   };
 #endif
 /* Tokens.  */
@@ -94,15 +94,15 @@ extern int yydebug;
 #define immediate 277
 #define commentary 278
 #define number 279
-#define repeat 280
-#define endrepeat 281
+#define vrepeat 280
+#define vendrepeat 281
 
 /* Value type.  */
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
 
 union YYSTYPE
 {
-#line 48 "vCompiler.y" /* yacc.c:1909  */
+#line 47 "vCompiler.y" /* yacc.c:1909  */
 
   char* id;
   int num;

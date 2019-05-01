@@ -17,12 +17,9 @@
     
 
     //C++ definitions
-    std::map<std::string,int> labels; //labels and values
-    std::map<std::string,int> futureLabels; //if found a label before declaration
     std::fstream fs; //stream instruction file
     std::fstream fs2; // stream data file
     std::string final_message="Compiler success";
-    int memCount=0; // memory instruction count initialized
     std::string line;
     int counter=0;
     int times=0;
@@ -36,10 +33,12 @@
     void viInstruction(std::string op,std::string vr,std::string v1, std::string imm); // op ,vr,v1, imm
     void viInstruction1(std::string op,std::string v1, std::string imm); // op , v1, imm
     void ssInstruction(std::string op,std::string s1, std::string imm); // op , s1, imm
-    void repeat(std::string times);
+    void repeat(int times);
     void endrepeat();
     std::string vectorReg(std::string vecReg);
-    std::string scalarReg(std::string scaReg){
+    std::string scalarReg(std::string scaReg);
+    std::string getImm(std::string imm);
+    std::string getImm1(std::string imm);
 
     void yyerror(std::string S); // define error function
     void printt(std::string s); //Define print function
@@ -57,8 +56,8 @@
 %token <id> immediate //immediate
 %token <id> commentary //commentary
 %token <num> number //number
-%token <id> repeat //repeat
-%token <id> endrepeat //endrepeat
+%token <id> vrepeat //repeat
+%token <id> vendrepeat //endrepeat
 
 /*yacc tokens*/
 %type <id> operation 
@@ -69,17 +68,6 @@ line   : line instruccion '\n'
        | /* NULL */
       ;
 
-instruccion : operation vreg ',' vreg ',' vreg {vInstruction($1,$2,$4,$6);}
-            | operation vreg ',' vreg ',' sreg {vsInstruction($1,$2,$4,$6);}
-            | operation vreg ',' vreg ',' immediate {viInstruction($1,$2,$4,$6);}
-            | operation immediate ',' vreg {viInstruction1($1,$4,$2);}
-            | operation vreg ',' immediate {viInstruction1($1,$2,$4);}
-            | operation sreg ',' immediate {ssInstruction($1,$2,$4);}
-            | repeat number {repeat($2);}
-            | endrepeat {endrepeat();}
-            | instruccion commentary {;}
-            | error {yyerror("instruccion not supported");}
-            ;   
 
 operation : vaddition     {;}
           | vsubtra       {;}
@@ -99,6 +87,18 @@ operation : vaddition     {;}
           | vrotr {;}
           | smove {;}
           ;
+
+instruccion : operation vreg ',' vreg ',' vreg {vInstruction($1,$2,$4,$6);}
+            | operation vreg ',' vreg ',' sreg {vsInstruction($1,$2,$4,$6);}
+            | operation vreg ',' vreg ',' immediate {viInstruction($1,$2,$4,$6);}
+            | operation immediate ',' vreg {viInstruction1($1,$4,$2);}
+            | operation vreg ',' immediate {viInstruction1($1,$2,$4);}
+            | operation sreg ',' immediate {ssInstruction($1,$2,$4);}
+            | vrepeat number {repeat($2);}
+            | vendrepeat {endrepeat();}
+            | instruccion commentary {;}
+            | error {yyerror("instruccion not supported");}
+            ;   
  
 %%
 
@@ -162,7 +162,7 @@ void viInstruction(std::string op,std::string vr,std::string v1,std::string imm)
     fs<<binary<<'\n';
 }
 
-void viInstruction1(std::string op,std::string v1,std::string imm){
+void viInstruction1(std::string op,std::string vr,std::string imm){
     std::string binary;
     if(op.compare("VST")==0 || op.compare("Vst")==0 || op.compare("vst")==0 || op.compare("VSt")==0){
         binary+="01110";
@@ -172,7 +172,6 @@ void viInstruction1(std::string op,std::string v1,std::string imm){
         binary+="01010";
     }
     binary+=vectorReg(vr);
-    binary+=vectorReg(v1);
     binary+=getImm1(imm);
     fs<<binary<<'\n';
 }
@@ -187,9 +186,8 @@ void ssInstruction(std::string op,std::string s1,std::string imm){
     fs<<binary<<'\n';
 }
 
-void repeat(std::string num){
-    std::istringstream iss (num);
-    iss >> times;
+void repeat(int num){
+    times=num;
 }
 
 void endrepeat(){
@@ -214,21 +212,21 @@ std::string scalarReg(std::string scaReg){
 
 std::string getImm(std::string imm){
     std::string data;
-    istringstream buffer(data);
+    std::istringstream buffer(data);
 	int value;
 	buffer >> value;
-    bitset<9> b;
-	b = (bitset<9> ) value;
+    std::bitset<9> b;
+	b = (std::bitset<9> ) value;
     return b.to_string();
 }
 
 std::string getImm1(std::string imm){
     std::string data;
-    istringstream buffer(data);
+    std::istringstream buffer(data);
 	int value;
 	buffer >> value;
-    bitset<14> b;
-	b = (bitset<14> ) value;
+    std::bitset<14> b;
+	b = (std::bitset<14> ) value;
     return b.to_string();
 }
 

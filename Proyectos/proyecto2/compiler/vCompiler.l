@@ -1,23 +1,24 @@
 %{
   /*_____Definition section_____literal c++ code between single "%"_____*/
 
-     /*Necesary imports*/
-  #include <string.h>
-  #include <stdlib.h>
 
   /*Necesary files to work.*/
   #include "y.tab.h" //yacc output file. Necesary to work.
 
+  /*Necesary imports*/
+  #include <string>
+  #include <string.h>
+  #include <stdlib.h>
+
   /*Function declaration*/
- // void yyerror(std::string S); // Define error message
+ void yyerror(std::string S); // Define error message
 %}
 
 %option yylineno 
 
 comment ;.+ 
-/*tag    [a-zA-Z_][a-zA-Z0-9_]*/
 imme   \#-?(0x)?[a-fA-F0-9_]+
-number [a-fA-F0-9_]+
+numero [a-fA-F0-9_]+
 
 %%
   /*_____Rules section_____*/
@@ -40,8 +41,8 @@ number [a-fA-F0-9_]+
 (v|V)(s|S)(t|T)               {yylval.id=strdup(yytext); return vstore;} //vst = vector store
 (v|V)(l|L)(d|D)               {yylval.id=strdup(yytext); return vload;} //vld = vector load
 (s|S)(m|M)(o|O)(v|V)          {yylval.id=strdup(yytext); return smove;} //smov = scalar move
-(r|R)(e|E)(p|P)(e|E)(a|A)(t|T) {yylval.id=strdup(yytext); return repeat;} //REPEAT
-(e|E)(n|N)(d|D)(r|R)(e|E)(p|P)(e|E)(a|A)(t|T) {yylval.id=strdup(yytext); return endrepeat;} //REPEAT
+(r|R)(e|E)(p|P)(e|E)(a|A)(t|T) {yylval.id=strdup(yytext); return vrepeat;} //REPEAT
+(e|E)(n|N)(d|D)(r|R)(e|E)(p|P)(e|E)(a|A)(t|T) {yylval.id=strdup(yytext); return vendrepeat;} //REPEAT
 
   /* Vector Registers*/
 (v|V)[0-9]?         {yylval.id=strdup(yytext); return vreg;} //vector registers
@@ -56,12 +57,12 @@ number [a-fA-F0-9_]+
 {comment}                {yylval.id=strdup(yytext); return commentary;}
   
   /*Numbers*/
-{number}                {yylval.num=atoi(yytext); return number;}
+{numero}                {yylval.num=atoi(yytext); return number;}
 
   /*White Spaces*/
 [,\[\]\n\=\!]                 {return yytext[0];}
 [\t \s]                   {;}
-.                  {;}
+.                  {yyerror("caracter invalido");}
 %%
 int yywrap(void){
   return 1;
