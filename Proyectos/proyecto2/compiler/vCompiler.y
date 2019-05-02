@@ -23,6 +23,7 @@
     std::string line;
     int counter=0;
     int times=0;
+    std::string *inst= (std::string *) calloc(50, sizeof(std::string));
 
     int yylex();  //call to invoke lexer, returns token
     extern int yylineno; //line number counter
@@ -65,6 +66,7 @@
 %%
 line   : line instruccion '\n'
        | line commentary '\n'
+       | '\n'
        | /* NULL */
       ;
 
@@ -126,6 +128,7 @@ void vInstruction(std::string op,std::string vr,std::string v1,std::string v2){
 }
 
 void vsInstruction(std::string op,std::string vr,std::string v1,std::string s1){
+    // std::cout<<"ENTRE"<<std::endl;
     std::string binary;
     if(op.compare("VAdds")==0 || op.compare("vAdds")==0 || op.compare("vadds")==0 || op.compare("VADDS")==0){
         binary+="00010";
@@ -141,6 +144,7 @@ void vsInstruction(std::string op,std::string vr,std::string v1,std::string s1){
     binary+=scalarReg(s1);
     binary+="0000"; // bits used only with immediates
     fs<<binary<<'\n';
+    // std::cout<<"TERMINE"<<std::endl;
 }
 
 void viInstruction(std::string op,std::string vr,std::string v1,std::string imm){
@@ -182,12 +186,13 @@ void ssInstruction(std::string op,std::string s1,std::string imm){
         binary+="10000";
     }
     binary+=scalarReg(s1);
-    binary+=getImm(imm);
+    binary+=getImm1(imm);
     fs<<binary<<'\n';
 }
 
 void repeat(int num){
     times=num;
+    // std::cout<<"TIMES: "<<times<<std::endl;
 }
 
 void endrepeat(){
@@ -212,6 +217,16 @@ std::string scalarReg(std::string scaReg){
 
 std::string getImm(std::string imm){
     std::string data;
+    if(imm.substr(0,3).compare("#0x")==0){
+        imm=imm.erase(0,3);
+        int x = strtoul(imm.c_str(), NULL, 16);
+        std::ostringstream Convert;
+	    Convert << x;
+	    data=Convert.str();
+    }else{
+        imm=imm.erase(0,1);
+        data=imm;
+    }
     std::istringstream buffer(data);
 	int value;
 	buffer >> value;
@@ -222,6 +237,16 @@ std::string getImm(std::string imm){
 
 std::string getImm1(std::string imm){
     std::string data;
+    if(imm.substr(0,3).compare("#0x")==0){
+        imm=imm.erase(0,3);
+        long x = strtoul(imm.c_str(), NULL, 16);
+        std::ostringstream Convert;
+	    Convert << x;
+	    data=Convert.str();
+    }else{
+        imm=imm.erase(0,1);
+        data=imm;
+    }
     std::istringstream buffer(data);
 	int value;
 	buffer >> value;

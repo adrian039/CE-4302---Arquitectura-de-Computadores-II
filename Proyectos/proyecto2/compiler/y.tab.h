@@ -102,7 +102,7 @@ extern int yydebug;
 
 union YYSTYPE
 {
-#line 47 "vCompiler.y" /* yacc.c:1909  */
+#line 48 "vCompiler.y" /* yacc.c:1909  */
 
   char* id;
   int num;

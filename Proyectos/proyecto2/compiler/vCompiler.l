@@ -62,7 +62,8 @@ numero [a-fA-F0-9_]+
   /*White Spaces*/
 [,\[\]\n\=\!]                 {return yytext[0];}
 [\t \s]                   {;}
-.                  {yyerror("caracter invalido");}
+
+
 %%
 int yywrap(void){
   return 1;
