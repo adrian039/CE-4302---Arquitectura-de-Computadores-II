@@ -15,7 +15,7 @@ class Clock
   public:
     Clock();
     int counter = 0;
-    int clockControl=1;
+    int clockControl = 0;
     pthread_mutex_t clockMutex = PTHREAD_MUTEX_INITIALIZER;
     pthread_cond_t clockCondMutex = PTHREAD_COND_INITIALIZER;
 
