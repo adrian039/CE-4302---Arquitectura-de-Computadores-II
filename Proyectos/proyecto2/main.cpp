@@ -1,9 +1,8 @@
-#include <stdio.h>
-#include <iostream>
 
-using namespace std;
+#include "clock.h"
 
-int main(){
-    cout<<"Hola mundo"<<endl;
+int main()
+{
+    Clock *clk = new Clock();
     return 0;
 }
