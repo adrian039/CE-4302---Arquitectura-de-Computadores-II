@@ -12,8 +12,9 @@
     #include <sstream>
 
 int main(){
+    int i = std::stoi("11111000001010", nullptr, 2);
     std::string pHex="AB1FFFF";
     unsigned int x = strtoul(pHex.c_str(), NULL, 16);
-	std::cout<<x<<std::endl;
+	std::cout<<i<<std::endl;
     return 0;
 }

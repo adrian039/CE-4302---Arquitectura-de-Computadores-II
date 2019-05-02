@@ -13,6 +13,7 @@
     #include <cstdlib>
     #include <fstream>
     #include <sstream>
+    #include "../config.h"
 
     
 
@@ -125,6 +126,10 @@ void vInstruction(std::string op,std::string vr,std::string v1,std::string v2){
     binary+=vectorReg(v2);
     binary+="0000"; // bits used only with immediates
     fs<<binary<<'\n';
+    if(times>0){
+        inst[counter]=binary;
+        counter++;
+    }
 }
 
 void vsInstruction(std::string op,std::string vr,std::string v1,std::string s1){
@@ -145,6 +150,10 @@ void vsInstruction(std::string op,std::string vr,std::string v1,std::string s1){
     binary+="0000"; // bits used only with immediates
     fs<<binary<<'\n';
     // std::cout<<"TERMINE"<<std::endl;
+    if(times>0){
+        inst[counter]=binary;
+        counter++;
+    }
 }
 
 void viInstruction(std::string op,std::string vr,std::string v1,std::string imm){
@@ -164,6 +173,10 @@ void viInstruction(std::string op,std::string vr,std::string v1,std::string imm)
     binary+=vectorReg(v1);
     binary+=getImm(imm);
     fs<<binary<<'\n';
+    if(times>0){
+        inst[counter]=binary;
+        counter++;
+    }
 }
 
 void viInstruction1(std::string op,std::string vr,std::string imm){
@@ -178,6 +191,10 @@ void viInstruction1(std::string op,std::string vr,std::string imm){
     binary+=vectorReg(vr);
     binary+=getImm1(imm);
     fs<<binary<<'\n';
+    if(times>0){
+        inst[counter]=binary;
+        counter++;
+    }
 }
 
 void ssInstruction(std::string op,std::string s1,std::string imm){
@@ -188,6 +205,10 @@ void ssInstruction(std::string op,std::string s1,std::string imm){
     binary+=scalarReg(s1);
     binary+=getImm1(imm);
     fs<<binary<<'\n';
+    if(times>0){
+        inst[counter]=binary;
+        counter++;
+    }
 }
 
 void repeat(int num){
@@ -196,7 +217,24 @@ void repeat(int num){
 }
 
 void endrepeat(){
+    for(int i=1; i<times; i++){
+        for(int j=0; j<counter; j++){
+            std::string data=(std::string) inst[j];
+            if(data.substr(0,5).compare("01110")==0 || data.substr(0,5).compare("01111")==0){
+                std::string imme=data.substr(11,14);
+                int i = std::stoi(imme, nullptr, 2);
+                i+=dirSteps;
+                data.erase(11,14);
+                std::bitset<13> b;
+	            b = (std::bitset<13> ) i;
+                data+=b.to_string();
+                inst[j]=data;
+            }
+            fs<<inst[j]<<'\n';
+        }
+    }
     times=0;
+    counter=0;
 }
 
 std::string vectorReg(std::string vecReg){

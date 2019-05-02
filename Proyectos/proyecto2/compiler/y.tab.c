@@ -78,6 +78,7 @@
     #include <cstdlib>
     #include <fstream>
     #include <sstream>
+    #include "../config.h"
 
     
 
@@ -109,7 +110,7 @@
     void yyerror(std::string S); // define error function
     void printt(std::string s); //Define print function
 
-#line 113 "y.tab.c" /* yacc.c:339  */
+#line 114 "y.tab.c" /* yacc.c:339  */
 
 # ifndef YY_NULLPTR
 #  if defined __cplusplus && 201103L <= __cplusplus
@@ -201,12 +202,12 @@ extern int yydebug;
 
 union YYSTYPE
 {
-#line 48 "vCompiler.y" /* yacc.c:355  */
+#line 49 "vCompiler.y" /* yacc.c:355  */
 
   char* id;
   int num;
 
-#line 210 "y.tab.c" /* yacc.c:355  */
+#line 211 "y.tab.c" /* yacc.c:355  */
 };
 
 typedef union YYSTYPE YYSTYPE;
@@ -223,7 +224,7 @@ int yyparse (void);
 
 /* Copy the second part of user declarations.  */
 
-#line 227 "y.tab.c" /* yacc.c:358  */
+#line 228 "y.tab.c" /* yacc.c:358  */
 
 #ifdef short
 # undef short
@@ -523,10 +524,10 @@ static const yytype_uint8 yytranslate[] =
   /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    67,    67,    68,    69,    70,    74,    75,    76,    77,
-      78,    79,    80,    81,    82,    83,    84,    85,    86,    87,
-      88,    89,    90,    93,    94,    95,    96,    97,    98,    99,
-     100,   101,   102
+       0,    68,    68,    69,    70,    71,    75,    76,    77,    78,
+      79,    80,    81,    82,    83,    84,    85,    86,    87,    88,
+      89,    90,    91,    94,    95,    96,    97,    98,    99,   100,
+     101,   102,   103
 };
 #endif
 
@@ -1324,169 +1325,169 @@ yyreduce:
   switch (yyn)
     {
         case 6:
-#line 74 "vCompiler.y" /* yacc.c:1646  */
+#line 75 "vCompiler.y" /* yacc.c:1646  */
     {;}
-#line 1330 "y.tab.c" /* yacc.c:1646  */
+#line 1331 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 7:
-#line 75 "vCompiler.y" /* yacc.c:1646  */
+#line 76 "vCompiler.y" /* yacc.c:1646  */
     {;}
-#line 1336 "y.tab.c" /* yacc.c:1646  */
+#line 1337 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 8:
-#line 76 "vCompiler.y" /* yacc.c:1646  */
+#line 77 "vCompiler.y" /* yacc.c:1646  */
     {;}
-#line 1342 "y.tab.c" /* yacc.c:1646  */
+#line 1343 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 9:
-#line 77 "vCompiler.y" /* yacc.c:1646  */
+#line 78 "vCompiler.y" /* yacc.c:1646  */
     {;}
-#line 1348 "y.tab.c" /* yacc.c:1646  */
+#line 1349 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 10:
-#line 78 "vCompiler.y" /* yacc.c:1646  */
+#line 79 "vCompiler.y" /* yacc.c:1646  */
     {;}
-#line 1354 "y.tab.c" /* yacc.c:1646  */
+#line 1355 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 11:
-#line 79 "vCompiler.y" /* yacc.c:1646  */
+#line 80 "vCompiler.y" /* yacc.c:1646  */
     {;}
-#line 1360 "y.tab.c" /* yacc.c:1646  */
+#line 1361 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 12:
-#line 80 "vCompiler.y" /* yacc.c:1646  */
+#line 81 "vCompiler.y" /* yacc.c:1646  */
     {;}
-#line 1366 "y.tab.c" /* yacc.c:1646  */
+#line 1367 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 13:
-#line 81 "vCompiler.y" /* yacc.c:1646  */
+#line 82 "vCompiler.y" /* yacc.c:1646  */
     {;}
-#line 1372 "y.tab.c" /* yacc.c:1646  */
+#line 1373 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 14:
-#line 82 "vCompiler.y" /* yacc.c:1646  */
+#line 83 "vCompiler.y" /* yacc.c:1646  */
     {;}
-#line 1378 "y.tab.c" /* yacc.c:1646  */
+#line 1379 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 15:
-#line 83 "vCompiler.y" /* yacc.c:1646  */
+#line 84 "vCompiler.y" /* yacc.c:1646  */
     {;}
-#line 1384 "y.tab.c" /* yacc.c:1646  */
+#line 1385 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 16:
-#line 84 "vCompiler.y" /* yacc.c:1646  */
+#line 85 "vCompiler.y" /* yacc.c:1646  */
     {;}
-#line 1390 "y.tab.c" /* yacc.c:1646  */
+#line 1391 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 17:
-#line 85 "vCompiler.y" /* yacc.c:1646  */
+#line 86 "vCompiler.y" /* yacc.c:1646  */
     {;}
-#line 1396 "y.tab.c" /* yacc.c:1646  */
+#line 1397 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 18:
-#line 86 "vCompiler.y" /* yacc.c:1646  */
+#line 87 "vCompiler.y" /* yacc.c:1646  */
     {;}
-#line 1402 "y.tab.c" /* yacc.c:1646  */
+#line 1403 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 19:
-#line 87 "vCompiler.y" /* yacc.c:1646  */
+#line 88 "vCompiler.y" /* yacc.c:1646  */
     {;}
-#line 1408 "y.tab.c" /* yacc.c:1646  */
+#line 1409 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 20:
-#line 88 "vCompiler.y" /* yacc.c:1646  */
+#line 89 "vCompiler.y" /* yacc.c:1646  */
     {;}
-#line 1414 "y.tab.c" /* yacc.c:1646  */
+#line 1415 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 21:
-#line 89 "vCompiler.y" /* yacc.c:1646  */
+#line 90 "vCompiler.y" /* yacc.c:1646  */
     {;}
-#line 1420 "y.tab.c" /* yacc.c:1646  */
+#line 1421 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 22:
-#line 90 "vCompiler.y" /* yacc.c:1646  */
+#line 91 "vCompiler.y" /* yacc.c:1646  */
     {;}
-#line 1426 "y.tab.c" /* yacc.c:1646  */
+#line 1427 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 23:
-#line 93 "vCompiler.y" /* yacc.c:1646  */
+#line 94 "vCompiler.y" /* yacc.c:1646  */
     {vInstruction((yyvsp[-5].id),(yyvsp[-4].id),(yyvsp[-2].id),(yyvsp[0].id));}
-#line 1432 "y.tab.c" /* yacc.c:1646  */
+#line 1433 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 24:
-#line 94 "vCompiler.y" /* yacc.c:1646  */
+#line 95 "vCompiler.y" /* yacc.c:1646  */
     {vsInstruction((yyvsp[-5].id),(yyvsp[-4].id),(yyvsp[-2].id),(yyvsp[0].id));}
-#line 1438 "y.tab.c" /* yacc.c:1646  */
+#line 1439 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 25:
-#line 95 "vCompiler.y" /* yacc.c:1646  */
+#line 96 "vCompiler.y" /* yacc.c:1646  */
     {viInstruction((yyvsp[-5].id),(yyvsp[-4].id),(yyvsp[-2].id),(yyvsp[0].id));}
-#line 1444 "y.tab.c" /* yacc.c:1646  */
+#line 1445 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 26:
-#line 96 "vCompiler.y" /* yacc.c:1646  */
+#line 97 "vCompiler.y" /* yacc.c:1646  */
     {viInstruction1((yyvsp[-3].id),(yyvsp[0].id),(yyvsp[-2].id));}
-#line 1450 "y.tab.c" /* yacc.c:1646  */
+#line 1451 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 27:
-#line 97 "vCompiler.y" /* yacc.c:1646  */
+#line 98 "vCompiler.y" /* yacc.c:1646  */
     {viInstruction1((yyvsp[-3].id),(yyvsp[-2].id),(yyvsp[0].id));}
-#line 1456 "y.tab.c" /* yacc.c:1646  */
+#line 1457 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 28:
-#line 98 "vCompiler.y" /* yacc.c:1646  */
+#line 99 "vCompiler.y" /* yacc.c:1646  */
     {ssInstruction((yyvsp[-3].id),(yyvsp[-2].id),(yyvsp[0].id));}
-#line 1462 "y.tab.c" /* yacc.c:1646  */
+#line 1463 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 29:
-#line 99 "vCompiler.y" /* yacc.c:1646  */
+#line 100 "vCompiler.y" /* yacc.c:1646  */
     {repeat((yyvsp[0].num));}
-#line 1468 "y.tab.c" /* yacc.c:1646  */
+#line 1469 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 30:
-#line 100 "vCompiler.y" /* yacc.c:1646  */
+#line 101 "vCompiler.y" /* yacc.c:1646  */
     {endrepeat();}
-#line 1474 "y.tab.c" /* yacc.c:1646  */
+#line 1475 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 31:
-#line 101 "vCompiler.y" /* yacc.c:1646  */
+#line 102 "vCompiler.y" /* yacc.c:1646  */
     {;}
-#line 1480 "y.tab.c" /* yacc.c:1646  */
+#line 1481 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 32:
-#line 102 "vCompiler.y" /* yacc.c:1646  */
+#line 103 "vCompiler.y" /* yacc.c:1646  */
     {yyerror("instruccion not supported");}
-#line 1486 "y.tab.c" /* yacc.c:1646  */
+#line 1487 "y.tab.c" /* yacc.c:1646  */
     break;
 
 
-#line 1490 "y.tab.c" /* yacc.c:1646  */
+#line 1491 "y.tab.c" /* yacc.c:1646  */
       default: break;
     }
   /* User semantic actions sometimes alter yychar, and that requires
@@ -1714,7 +1715,7 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 105 "vCompiler.y" /* yacc.c:1906  */
+#line 106 "vCompiler.y" /* yacc.c:1906  */
 
 
 extern int yyparse();
@@ -1738,6 +1739,10 @@ void vInstruction(std::string op,std::string vr,std::string v1,std::string v2){
     binary+=vectorReg(v2);
     binary+="0000"; // bits used only with immediates
     fs<<binary<<'\n';
+    if(times>0){
+        inst[counter]=binary;
+        counter++;
+    }
 }
 
 void vsInstruction(std::string op,std::string vr,std::string v1,std::string s1){
@@ -1758,6 +1763,10 @@ void vsInstruction(std::string op,std::string vr,std::string v1,std::string s1){
     binary+="0000"; // bits used only with immediates
     fs<<binary<<'\n';
     // std::cout<<"TERMINE"<<std::endl;
+    if(times>0){
+        inst[counter]=binary;
+        counter++;
+    }
 }
 
 void viInstruction(std::string op,std::string vr,std::string v1,std::string imm){
@@ -1777,6 +1786,10 @@ void viInstruction(std::string op,std::string vr,std::string v1,std::string imm)
     binary+=vectorReg(v1);
     binary+=getImm(imm);
     fs<<binary<<'\n';
+    if(times>0){
+        inst[counter]=binary;
+        counter++;
+    }
 }
 
 void viInstruction1(std::string op,std::string vr,std::string imm){
@@ -1791,6 +1804,10 @@ void viInstruction1(std::string op,std::string vr,std::string imm){
     binary+=vectorReg(vr);
     binary+=getImm1(imm);
     fs<<binary<<'\n';
+    if(times>0){
+        inst[counter]=binary;
+        counter++;
+    }
 }
 
 void ssInstruction(std::string op,std::string s1,std::string imm){
@@ -1801,6 +1818,10 @@ void ssInstruction(std::string op,std::string s1,std::string imm){
     binary+=scalarReg(s1);
     binary+=getImm1(imm);
     fs<<binary<<'\n';
+    if(times>0){
+        inst[counter]=binary;
+        counter++;
+    }
 }
 
 void repeat(int num){
@@ -1809,7 +1830,24 @@ void repeat(int num){
 }
 
 void endrepeat(){
+    for(int i=1; i<times; i++){
+        for(int j=0; j<counter; j++){
+            std::string data=(std::string) inst[j];
+            if(data.substr(0,5).compare("01110")==0 || data.substr(0,5).compare("01111")==0){
+                std::string imme=data.substr(11,14);
+                int i = std::stoi(imme, nullptr, 2);
+                i+=dirSteps;
+                data.erase(11,14);
+                std::bitset<13> b;
+	            b = (std::bitset<13> ) i;
+                data+=b.to_string();
+                inst[j]=data;
+            }
+            fs<<inst[j]<<'\n';
+        }
+    }
     times=0;
+    counter=0;
 }
 
 std::string vectorReg(std::string vecReg){
