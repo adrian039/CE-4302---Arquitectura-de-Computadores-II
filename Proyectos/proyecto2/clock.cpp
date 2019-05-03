@@ -6,7 +6,7 @@ Clock::Clock()
     int selector = 2;
     while (selector != 1 && selector != 0)
     {
-        std::cout << "Type 1 for use automatic clock or 0 for manual clock:";
+        std::cout << "Type 1 for use automatic clock or 0 for manual clock: ";
         std::cin >> selector;
     }
     this->clockControl = selector;
