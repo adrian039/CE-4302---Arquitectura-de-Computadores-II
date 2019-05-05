@@ -18,6 +18,14 @@ void InstMem::writeInst(int data, int index)
     instMemory[index] = data;
 }
 
+// void InstMem::file(){
+//     std::cout<<"perra"<<std::endl;
+//     freopen(instFile, "rb", stdin);
+//     std::string line;
+//     while(getline(std::cin, line))
+//        std::cout << line << std::endl;
+// }
+
 void *InstMem::start(void *ptr)
 {
     InstMem *inst = (InstMem *)ptr;

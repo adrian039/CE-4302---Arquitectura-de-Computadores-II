@@ -7,3 +7,4 @@
 #define dataMemAddr 0xC8000000
 #define instMemAddr 0xD8000000
 #define pageSize 4096
+#define instFile "compiler/text.txt"
