@@ -5,7 +5,8 @@ VectorRegisters::VectorRegisters(Clock *clk_)
 {
     clk = clk_;
     pthread_create(&threadVectorReg, 0, &VectorRegisters::start, (void *)this);
-    pthread_join(threadVectorReg, NULL);
+    pthread_detach(threadVectorReg);
+    // pthread_join(threadVectorReg, NULL);
 }
 
 int *VectorRegisters::readVector(int index)

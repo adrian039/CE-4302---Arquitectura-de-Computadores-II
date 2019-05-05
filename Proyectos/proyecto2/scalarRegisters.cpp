@@ -26,7 +26,7 @@ void *ScalarRegisters::start(void *ptr)
         // std::cout<<"ENTRE"<<std::endl;
         pthread_mutex_lock(&(inst->clk->clockMutex));
         pthread_cond_wait(&(inst->clk->scalarRegisterCondMutex), &(inst->clk->clockMutex));
-        // std::cout<<"HOLA MUNDO!"<<std::endl;
+        //  std::cout<<"HOLA MUNDO!"<<std::endl;
         if (inst->read)
         {
             inst->value = inst->readScalar(inst->index);

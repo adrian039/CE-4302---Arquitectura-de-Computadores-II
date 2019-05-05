@@ -17,11 +17,17 @@ class InstMem
 {
   public:
     InstMem(Clock *clk);
+    int write=0;
+    int data=0;
+    int index=0;
     int *instMemory=(int*)calloc(262144, sizeof(int)); //1MB
+    pthread_cond_t instMemoryCondMutex = PTHREAD_COND_INITIALIZER;
+    pthread_cond_t instMemoryReadMutex = PTHREAD_COND_INITIALIZER;
 
   private:
     Clock *clk;
     int readInst(int index);
+    void writeInst(int data, int index);
     pthread_t threadInstMem;
     static void *start(void *ptr);
 };
