@@ -19,7 +19,7 @@ class Clock
     pthread_mutex_t clockMutex = PTHREAD_MUTEX_INITIALIZER;
     pthread_cond_t clockCondMutex = PTHREAD_COND_INITIALIZER;
     pthread_cond_t clockBusCondMutex = PTHREAD_COND_INITIALIZER;
-    // pthread_cond_t scalarRegisterCondMutex = PTHREAD_COND_INITIALIZER;
+    pthread_cond_t scalarRegisterCondMutex = PTHREAD_COND_INITIALIZER;
 
   private:
     static void *startClock(void *ptr);
