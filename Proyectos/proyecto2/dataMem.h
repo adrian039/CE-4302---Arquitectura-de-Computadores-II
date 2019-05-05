@@ -20,7 +20,7 @@ class DataMem
     int write=0;
     int data=0;
     int index=0;
-    int *dataMem=(int*)calloc(262144, sizeof(int)); //1MB
+    int *dataMemory=(int*)calloc(262144, sizeof(int)); //1MB
     pthread_cond_t dataMemCondMutex = PTHREAD_COND_INITIALIZER;
     pthread_cond_t dataMemReadMutex = PTHREAD_COND_INITIALIZER;
 
