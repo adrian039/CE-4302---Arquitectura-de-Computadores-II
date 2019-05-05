@@ -10,7 +10,7 @@ VectorRegisters::VectorRegisters(Clock *clk_)
 
 int *VectorRegisters::readVector(int index)
 {
-    int data[8];
+    int *data=(int*)calloc(8, sizeof(int));
     for (int i = 0; i < 8; i++)
     {
         data[i] = vectorRegs[index][i];

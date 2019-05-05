@@ -23,8 +23,10 @@ void *ScalarRegisters::start(void *ptr)
     ScalarRegisters *inst = (ScalarRegisters *)ptr;
     while (1)
     {
+        // std::cout<<"ENTRE"<<std::endl;
         pthread_mutex_lock(&(inst->clk->clockMutex));
-        pthread_cond_wait(&(inst->scalarRegisterCondMutex), &(inst->clk->clockMutex));
+        pthread_cond_wait(&(inst->clk->scalarRegisterCondMutex), &(inst->clk->clockMutex));
+        // std::cout<<"HOLA MUNDO!"<<std::endl;
         if (inst->read)
         {
             inst->value = inst->readScalar(inst->index);

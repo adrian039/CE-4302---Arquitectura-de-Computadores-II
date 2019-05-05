@@ -12,8 +12,8 @@ Clock::Clock()
     this->clockControl = selector;
     pthread_create(&clockThread, 0, &Clock::startClock, (void *)this);
     pthread_create(&controlThread, 0, &Clock::clockController, (void *)this);
-    pthread_join(clockThread, NULL);
-    pthread_join(controlThread, NULL);
+    pthread_detach(clockThread);
+    pthread_detach(controlThread);
 }
 
 void *Clock::startClock(void *ptr)
@@ -24,7 +24,8 @@ void *Clock::startClock(void *ptr)
         pthread_mutex_lock(&(inst->clockMutex));
         pthread_cond_wait(&(inst->clockCondMutex), &(inst->clockMutex));
         inst->counter++;
-        std::cout << "******* Ciclo: " << std::to_string(inst->counter) << " *********" << std::endl;
+        std::cout << "******* Ciclo: "+ std::to_string(inst->counter) << " *********" << std::endl;
+       // pthread_cond_broadcast(&(inst->scalarRegisterCondMutex));
         pthread_mutex_unlock(&(inst->clockMutex));
     }
 }
