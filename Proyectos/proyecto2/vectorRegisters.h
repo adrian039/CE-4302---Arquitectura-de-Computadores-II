@@ -18,7 +18,7 @@ class VectorRegisters
 {
   public:
     int index = 0;
-    int *value;
+    int *value=(int*)calloc(8, sizeof(int));
     int read = 0;
     VectorRegisters(Clock *clk);
     pthread_cond_t vectorRegisterCondMutex = PTHREAD_COND_INITIALIZER;
