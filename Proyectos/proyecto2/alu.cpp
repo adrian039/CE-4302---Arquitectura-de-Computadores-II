@@ -42,7 +42,7 @@ void *Alu::start(void *ptr)
     while (1)
     {
         pthread_mutex_lock(&(inst->clk->clockMutex));
-        pthread_cond_wait(&(inst->clk->clockBusCondMutex), &(inst->clk->clockMutex));
+        pthread_cond_wait(&(inst->clk->clockAluCondMutex), &(inst->clk->clockMutex));
         switch (inst->aluControl)
         {
         case 1:
@@ -61,7 +61,7 @@ void *Alu::start(void *ptr)
             inst->result = inst->vrot(inst->dataA, inst->dataB);
             break;
         }
-        pthread_cond_signal(&(inst->clk->clockBusCondMutex));
+        pthread_cond_signal(&(inst->aluResultCondMutex));
         pthread_mutex_unlock(&(inst->clk->clockMutex));
     }
 }

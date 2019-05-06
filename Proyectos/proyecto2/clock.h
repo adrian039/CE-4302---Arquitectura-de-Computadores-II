@@ -12,20 +12,22 @@
 
 class Clock
 {
-  public:
-    Clock();
-    int counter = 0;
-    int clockControl = 0;
-    pthread_mutex_t clockMutex = PTHREAD_MUTEX_INITIALIZER;
-    pthread_cond_t clockCondMutex = PTHREAD_COND_INITIALIZER;
-    pthread_cond_t clockBusCondMutex = PTHREAD_COND_INITIALIZER;
-    pthread_cond_t clockControlCondMutex = PTHREAD_COND_INITIALIZER;
-    pthread_cond_t scalarRegisterCondMutex = PTHREAD_COND_INITIALIZER;
+public:
+  Clock();
+  int counter = 0;
+  int clockControl = 0;
+  pthread_mutex_t clockMutex = PTHREAD_MUTEX_INITIALIZER;
+  pthread_cond_t clockCondMutex = PTHREAD_COND_INITIALIZER;
+  pthread_cond_t clockBusCondMutex = PTHREAD_COND_INITIALIZER;
+  pthread_cond_t clockControlCondMutex = PTHREAD_COND_INITIALIZER;
+  pthread_cond_t scalarRegisterCondMutex = PTHREAD_COND_INITIALIZER;
+  pthread_cond_t clockAluCondMutex = PTHREAD_COND_INITIALIZER;
+  pthread_cond_t clockWritebackCondMutex = PTHREAD_COND_INITIALIZER;
 
-  private:
-    static void *startClock(void *ptr);
-    static void *clockController(void *ptr);
-    pthread_t clockThread, controlThread;
+private:
+  static void *startClock(void *ptr);
+  static void *clockController(void *ptr);
+  pthread_t clockThread, controlThread;
 };
 
 #endif

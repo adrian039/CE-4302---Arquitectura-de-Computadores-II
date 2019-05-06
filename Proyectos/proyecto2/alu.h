@@ -20,6 +20,7 @@ class Alu
     int dataB=0;
     int result=0;
     pthread_cond_t aluCondMutex = PTHREAD_COND_INITIALIZER;
+    pthread_cond_t aluResultCondMutex = PTHREAD_COND_INITIALIZER;
 
   private:
     Clock *clk;

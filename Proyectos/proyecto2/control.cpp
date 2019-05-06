@@ -47,42 +47,63 @@ void *Control::start(void *ptr)
             int datA = 0;
             int datB = 0;
             int datR = 0;
-            int *vecDataA=(int*)calloc(8, sizeof(int));
-            int *vecDataB=(int*)calloc(8, sizeof(int));
+            int *vecDataA = (int *)calloc(8, sizeof(int));
+            int *vecDataB = (int *)calloc(8, sizeof(int));
             if (opcode == 0 || opcode == 3 || opcode == 6 || opcode == 9)
             {
+                inst->vectorFlag=1;
                 datA = inst->getData(instruction.substr(10, 5));
                 datB = inst->getData(instruction.substr(15, 5));
                 datR = inst->getData(instruction.substr(5, 5));
                 inst->vectRegs->index = datA;
                 pthread_cond_signal(&(inst->vectRegs->vectorRegisterCondMutex));
                 pthread_cond_wait(&(inst->vectRegs->vectorRegisterReadMutex), &(inst->clk->clockMutex));
-                vecDataA=inst->vectRegs->value;
+                inst->vectDataA = inst->vectRegs->value;
                 inst->vectRegs->index = datB;
                 pthread_cond_signal(&(inst->vectRegs->vectorRegisterCondMutex));
                 pthread_cond_wait(&(inst->vectRegs->vectorRegisterReadMutex), &(inst->clk->clockMutex));
-                vecDataB=inst->vectRegs->value;
-                for(int i=0; i<8; i++){
-                    
+                inst->vectDataB = inst->vectRegs->value;
+                switch (opcode)
+                {
+                    case 0:
+                        inst->aluSelect=1;
+                        break;
+                    case 3:
+                        inst->aluSelect=2;
+                        break;
+                    case 6:
+                        inst->aluSelect=3;
+                        break;
+                    case 9:
+                        inst->aluSelect=4;
+                        break;
                 }
+                pthread_cond_signal(&(inst->controlExecutionCondMutex));
             }
             else if (opcode == 2 || opcode == 5 || opcode == 8 || opcode == 11)
             {
+                inst->vectorFlag=0;
                 datA = inst->getData(instruction.substr(10, 5));
                 datB = inst->getData(instruction.substr(15, 5));
                 datR = inst->getData(instruction.substr(5, 5));
             }
             else if (opcode == 1 || opcode == 4 || opcode == 7 || opcode == 12 || opcode == 13)
             {
+                inst->vectorFlag=0;
                 datA = inst->getData(instruction.substr(10, 5));
                 datB = inst->getData(instruction.substr(15, 9));
                 datR = inst->getData(instruction.substr(5, 5));
             }
             else if (opcode == 10 || opcode == 14 || opcode == 15 || opcode == 16)
             {
+                inst->vectorFlag=0;
                 datA = inst->getData(instruction.substr(10, 14));
                 datR = inst->getData(instruction.substr(5, 5));
             }
+        }
+        else
+        {
+            // instructions completed!
         }
         pthread_mutex_unlock(&(inst->clk->clockMutex));
     }
