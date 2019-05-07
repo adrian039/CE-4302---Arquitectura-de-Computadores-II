@@ -11,20 +11,26 @@
 #include <sstream>
 #include <pthread.h>
 #include "clock.h"
-#include "instMem.h"
-#include "vectorRegisters.h"
-#include "scalarRegisters.h"
+#include "dataMem.h"
+#include "execution.h"
 #include "config.h"
 
-class Writeback{
-    public:
-        Writeback(Clock *clk_);
-        pthread_cond_t writebackCondMutex = PTHREAD_COND_INITIALIZER;
+class Writeback
+{
+public:
+    int resultReg = 0;
+    Writeback(Clock *clk_, Control *ctrl_, Execution *exe_, VectorRegisters *vecRegs_, ScalarRegisters *scaRegs_, DataMem *dataMem_);
+    pthread_cond_t writebackCondMutex = PTHREAD_COND_INITIALIZER;
 
-    private:
-        Clock *clk;
-        pthread_t threadWriteback;
-        static void *start(void *ptr);
+private:
+    Clock *clk;
+    Control *ctrl;
+    Execution *exe;
+    VectorRegisters *vecRegs;
+    ScalarRegisters *scaRegs;
+    DataMem *dataMem;
+    pthread_t threadWriteback;
+    static void *start(void *ptr);
 };
 
 #endif

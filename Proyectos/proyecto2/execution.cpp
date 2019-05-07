@@ -19,11 +19,12 @@ void *Execution::start(void *ptr)
     {
         pthread_mutex_lock(&(inst->clk->clockMutex));
         pthread_cond_wait(&(inst->ctrl->controlExecutionCondMutex), &(inst->clk->clockMutex));
+        inst->resultReg = inst->ctrl->resultReg;
         inst->aluControl = inst->ctrl->aluSelect;
-        inst->alu1->aluControl=inst->aluControl;
-        inst->alu2->aluControl=inst->aluControl;
-        inst->alu3->aluControl=inst->aluControl;
-        inst->alu4->aluControl=inst->aluControl;
+        inst->alu1->aluControl = inst->aluControl;
+        inst->alu2->aluControl = inst->aluControl;
+        inst->alu3->aluControl = inst->aluControl;
+        inst->alu4->aluControl = inst->aluControl;
         if (inst->ctrl->vectorFlag)
         {
             inst->vectDataA = inst->ctrl->vectDataA;
@@ -58,6 +59,7 @@ void *Execution::start(void *ptr)
         else // sacalar register values and inmediates
         {
         }
+        inst->ctrl->lsldFlag = 0;
         pthread_cond_signal(&(inst->clk->clockWritebackCondMutex));
         pthread_mutex_unlock(&(inst->clk->clockMutex));
     }

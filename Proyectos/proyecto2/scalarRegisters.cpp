@@ -5,7 +5,8 @@ ScalarRegisters::ScalarRegisters(Clock *clk_)
 {
     clk = clk_;
     pthread_create(&threadScalarReg, 0, &ScalarRegisters::start, (void *)this);
-    pthread_join(threadScalarReg, NULL);
+    pthread_detach(threadScalarReg);
+    // pthread_join(threadScalarReg, NULL);
 }
 
 int ScalarRegisters::readScalar(int index)

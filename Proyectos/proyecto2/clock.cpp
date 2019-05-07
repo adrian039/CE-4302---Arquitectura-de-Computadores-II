@@ -26,7 +26,7 @@ void *Clock::startClock(void *ptr)
         inst->counter++;
         std::cout << "\n";
         std::cout << "******* Ciclo: "+ std::to_string(inst->counter) << " *********" << std::endl;
-        pthread_cond_broadcast(&(inst->scalarRegisterCondMutex));
+        pthread_cond_broadcast(&(inst->clockControlCondMutex));
         pthread_mutex_unlock(&(inst->clockMutex));
     }
 }

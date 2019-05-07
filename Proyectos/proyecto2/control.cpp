@@ -55,6 +55,7 @@ void *Control::start(void *ptr)
                 datA = inst->getData(instruction.substr(10, 5));
                 datB = inst->getData(instruction.substr(15, 5));
                 datR = inst->getData(instruction.substr(5, 5));
+                inst->resultReg=datR;
                 inst->vectRegs->index = datA;
                 pthread_cond_signal(&(inst->vectRegs->vectorRegisterCondMutex));
                 pthread_cond_wait(&(inst->vectRegs->vectorRegisterReadMutex), &(inst->clk->clockMutex));
@@ -103,6 +104,7 @@ void *Control::start(void *ptr)
         }
         else
         {
+            std::cout<<"ES CERO..."<<std::endl;
             // instructions completed!
         }
         pthread_mutex_unlock(&(inst->clk->clockMutex));
