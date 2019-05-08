@@ -23,6 +23,7 @@ void VectorRegisters::writeVector(int *data, int index)
 {
     for (int i = 0; i < 8; i++)
     {
+        std::cout<<"DATA "<<i<<": "<<data[i]<<std::endl;
         vectorRegs[index][i] = data[i];
     }
 }
@@ -36,12 +37,14 @@ void *VectorRegisters::start(void *ptr)
         pthread_cond_wait(&(inst->vectorRegisterCondMutex), &(inst->clk->clockMutex));
         if (inst->read)
         {
+            // std::cout << "LEEEOOOO" << std::endl;
             inst->value = inst->readVector(inst->index);
             pthread_cond_signal(&(inst->vectorRegisterReadMutex));
         }
         else
         {
             inst->writeVector(inst->value, inst->index);
+            pthread_cond_signal(&( inst->vectorRegisterWriteMutex));
         }
         pthread_mutex_unlock(&(inst->clk->clockMutex));
     }

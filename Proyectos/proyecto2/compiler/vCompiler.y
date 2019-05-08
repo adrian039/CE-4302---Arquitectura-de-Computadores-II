@@ -52,7 +52,7 @@
 } // structure to make the id and number relationship
 
 /*lex tokens*/
-%token <id> vaddition vsubtra vmultiple vload vstore vxor vrot vadditions vadditioni vsubtras vsubtrai  vxors vxori  vmultiples  vmultiplei  vrotr smove//instructions
+%token <id> vaddition vsubtra vmultiple vload vstore vxor vrot vadditions vadditioni vsubtras vsubtrai  vxors vxori  vmultiples  vmultiplei  vrotr smove vlrot vlrotr//instructions
 %token <id> vreg // vector register
 %token <id> sreg // scalar register
 %token <id> immediate //immediate
@@ -89,6 +89,8 @@ operation : vaddition     {;}
           | vmultiplei     {;}
           | vrotr {;}
           | smove {;}
+          | vlrot {;}
+          | vlrotr {;}
           ;
 
 instruccion : operation vreg ',' vreg ',' vreg {vInstruction($1,$2,$4,$6);}
@@ -168,6 +170,8 @@ void viInstruction(std::string op,std::string vr,std::string v1,std::string imm)
         binary+="01101";
     }else if(op.compare("VROTR")==0 || op.compare("Vrotr")==0 || op.compare("vrotr")==0 || op.compare("VRotr")==0){
         binary+="01101";
+    }else if(op.compare("VLROTR")==0 || op.compare("Vlrotr")==0 || op.compare("vlrotr")==0 || op.compare("VLRotr")==0){
+        binary+="10010";
     }
     binary+=vectorReg(vr);
     binary+=vectorReg(v1);
@@ -187,6 +191,8 @@ void viInstruction1(std::string op,std::string vr,std::string imm){
         binary+="01111";
     }else if(op.compare("VROT")==0 || op.compare("Vrot")==0 || op.compare("vrot")==0 || op.compare("VRot")==0){
         binary+="01010";
+    }else if(op.compare("VLROT")==0 || op.compare("Vlrot")==0 || op.compare("vlrot")==0 || op.compare("VLRot")==0){
+        binary+="10001";
     }
     binary+=vectorReg(vr);
     binary+=getImm1(imm);

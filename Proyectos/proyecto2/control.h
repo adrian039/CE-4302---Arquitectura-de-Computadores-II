@@ -21,11 +21,14 @@ class Control
 public:
     int *vectDataA = (int *)calloc(8, sizeof(int));
     int *vectDataB = (int *)calloc(8, sizeof(int));
+    int *vector = (int *)calloc(8, sizeof(int));
     int resultReg = 0;
     int scaDataB = 0; // used for scalar register values or inmediates
     int aluSelect = 0;
     int vectorFlag = 0;
-    int lsldFlag = 0;
+    int ldFlag = 0;
+    int stFlag = 0;
+    int pc = 0;
     Control(Clock *clk_, InstMem *instMem_, VectorRegisters *vectRegs_, ScalarRegisters *scaRegs_);
     pthread_cond_t controlCondMutex = PTHREAD_COND_INITIALIZER;
     pthread_cond_t controlExecutionCondMutex = PTHREAD_COND_INITIALIZER;

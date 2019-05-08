@@ -8,3 +8,5 @@
 #define instMemAddr 0xD8000000
 #define pageSize 4096
 #define instFile "compiler/text.txt"
+#define imgFile "lena.txt"
+#define imgPixelsFile "tools/lena.txt"

@@ -19,6 +19,7 @@ void *Execution::start(void *ptr)
     {
         pthread_mutex_lock(&(inst->clk->clockMutex));
         pthread_cond_wait(&(inst->ctrl->controlExecutionCondMutex), &(inst->clk->clockMutex));
+        std::cout<<"EXECUTION STARTED"<<std::endl;
         inst->resultReg = inst->ctrl->resultReg;
         inst->aluControl = inst->ctrl->aluSelect;
         inst->alu1->aluControl = inst->aluControl;
@@ -59,7 +60,9 @@ void *Execution::start(void *ptr)
         else // sacalar register values and inmediates
         {
         }
-        inst->ctrl->lsldFlag = 0;
+        inst->ctrl->ldFlag = 0;
+        inst->ctrl->stFlag = 0;
+      //  pthread_cond_wait(&(inst->clk->clockCondMutex), &(inst->clk->clockMutex)); // ***** PIPELINE BEHAVIOR *****//
         pthread_cond_signal(&(inst->clk->clockWritebackCondMutex));
         pthread_mutex_unlock(&(inst->clk->clockMutex));
     }

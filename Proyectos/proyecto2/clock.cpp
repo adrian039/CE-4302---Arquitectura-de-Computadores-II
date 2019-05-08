@@ -19,14 +19,16 @@ Clock::Clock()
 void *Clock::startClock(void *ptr)
 {
     Clock *inst = (Clock *)ptr;
+    pthread_cond_wait(&(inst->memoriesDataInitMutex), &(inst->clockMutex));
     while (1)
     {
         pthread_mutex_lock(&(inst->clockMutex));
         pthread_cond_wait(&(inst->clockCondMutex), &(inst->clockMutex));
         inst->counter++;
         std::cout << "\n";
-        std::cout << "******* Ciclo: "+ std::to_string(inst->counter) << " *********" << std::endl;
+        std::cout << "******* Ciclo: " + std::to_string(inst->counter) << " *********" << std::endl;
         pthread_cond_broadcast(&(inst->clockControlCondMutex));
+        pthread_cond_broadcast(&(inst->clockExecuteCondMutex));
         pthread_mutex_unlock(&(inst->clockMutex));
     }
 }
@@ -41,7 +43,7 @@ void *Clock::clockController(void *ptr)
         {
             pthread_cond_signal(&(inst->clockCondMutex));
             pthread_mutex_unlock(&(inst->clockMutex));
-            sleep(1);
+            sleep(2);
         }
         else
         {

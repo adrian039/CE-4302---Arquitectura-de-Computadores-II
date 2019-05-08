@@ -62,13 +62,15 @@ extern int yydebug;
     vmultiplei = 272,
     vrotr = 273,
     smove = 274,
-    vreg = 275,
-    sreg = 276,
-    immediate = 277,
-    commentary = 278,
-    number = 279,
-    vrepeat = 280,
-    vendrepeat = 281
+    vlrot = 275,
+    vlrotr = 276,
+    vreg = 277,
+    sreg = 278,
+    immediate = 279,
+    commentary = 280,
+    number = 281,
+    vrepeat = 282,
+    vendrepeat = 283
   };
 #endif
 /* Tokens.  */
@@ -89,13 +91,15 @@ extern int yydebug;
 #define vmultiplei 272
 #define vrotr 273
 #define smove 274
-#define vreg 275
-#define sreg 276
-#define immediate 277
-#define commentary 278
-#define number 279
-#define vrepeat 280
-#define vendrepeat 281
+#define vlrot 275
+#define vlrotr 276
+#define vreg 277
+#define sreg 278
+#define immediate 279
+#define commentary 280
+#define number 281
+#define vrepeat 282
+#define vendrepeat 283
 
 /* Value type.  */
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
@@ -107,7 +111,7 @@ union YYSTYPE
   char* id;
   int num;
 
-#line 111 "y.tab.h" /* yacc.c:1909  */
+#line 115 "y.tab.h" /* yacc.c:1909  */
 };
 
 typedef union YYSTYPE YYSTYPE;

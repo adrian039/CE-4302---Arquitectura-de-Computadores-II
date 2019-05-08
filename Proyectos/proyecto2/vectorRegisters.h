@@ -22,6 +22,7 @@ class VectorRegisters
     int read = 0;
     VectorRegisters(Clock *clk);
     pthread_cond_t vectorRegisterCondMutex = PTHREAD_COND_INITIALIZER;
+    pthread_cond_t vectorRegisterWriteMutex = PTHREAD_COND_INITIALIZER;
     pthread_cond_t vectorRegisterReadMutex = PTHREAD_COND_INITIALIZER;
     int vectorRegs[10][8];
 

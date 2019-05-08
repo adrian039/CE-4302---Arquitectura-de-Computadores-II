@@ -162,13 +162,15 @@ extern int yydebug;
     vmultiplei = 272,
     vrotr = 273,
     smove = 274,
-    vreg = 275,
-    sreg = 276,
-    immediate = 277,
-    commentary = 278,
-    number = 279,
-    vrepeat = 280,
-    vendrepeat = 281
+    vlrot = 275,
+    vlrotr = 276,
+    vreg = 277,
+    sreg = 278,
+    immediate = 279,
+    commentary = 280,
+    number = 281,
+    vrepeat = 282,
+    vendrepeat = 283
   };
 #endif
 /* Tokens.  */
@@ -189,13 +191,15 @@ extern int yydebug;
 #define vmultiplei 272
 #define vrotr 273
 #define smove 274
-#define vreg 275
-#define sreg 276
-#define immediate 277
-#define commentary 278
-#define number 279
-#define vrepeat 280
-#define vendrepeat 281
+#define vlrot 275
+#define vlrotr 276
+#define vreg 277
+#define sreg 278
+#define immediate 279
+#define commentary 280
+#define number 281
+#define vrepeat 282
+#define vendrepeat 283
 
 /* Value type.  */
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
@@ -207,7 +211,7 @@ union YYSTYPE
   char* id;
   int num;
 
-#line 211 "y.tab.c" /* yacc.c:355  */
+#line 215 "y.tab.c" /* yacc.c:355  */
 };
 
 typedef union YYSTYPE YYSTYPE;
@@ -224,7 +228,7 @@ int yyparse (void);
 
 /* Copy the second part of user declarations.  */
 
-#line 228 "y.tab.c" /* yacc.c:358  */
+#line 232 "y.tab.c" /* yacc.c:358  */
 
 #ifdef short
 # undef short
@@ -466,21 +470,21 @@ union yyalloc
 /* YYFINAL -- State number of the termination state.  */
 #define YYFINAL  3
 /* YYLAST -- Last index in YYTABLE.  */
-#define YYLAST   40
+#define YYLAST   42
 
 /* YYNTOKENS -- Number of terminals.  */
-#define YYNTOKENS  29
+#define YYNTOKENS  31
 /* YYNNTS -- Number of nonterminals.  */
 #define YYNNTS  4
 /* YYNRULES -- Number of rules.  */
-#define YYNRULES  32
+#define YYNRULES  34
 /* YYNSTATES -- Number of states.  */
-#define YYNSTATES  45
+#define YYNSTATES  47
 
 /* YYTRANSLATE[YYX] -- Symbol number corresponding to YYX as returned
    by yylex, with out-of-bounds checking.  */
 #define YYUNDEFTOK  2
-#define YYMAXUTOK   281
+#define YYMAXUTOK   283
 
 #define YYTRANSLATE(YYX)                                                \
   ((unsigned int) (YYX) <= YYMAXUTOK ? yytranslate[YYX] : YYUNDEFTOK)
@@ -490,10 +494,10 @@ union yyalloc
 static const yytype_uint8 yytranslate[] =
 {
        0,     2,     2,     2,     2,     2,     2,     2,     2,     2,
-      27,     2,     2,     2,     2,     2,     2,     2,     2,     2,
+      29,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
-       2,     2,     2,     2,    28,     2,     2,     2,     2,     2,
+       2,     2,     2,     2,    30,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
@@ -517,7 +521,7 @@ static const yytype_uint8 yytranslate[] =
        2,     2,     2,     2,     2,     2,     1,     2,     3,     4,
        5,     6,     7,     8,     9,    10,    11,    12,    13,    14,
       15,    16,    17,    18,    19,    20,    21,    22,    23,    24,
-      25,    26
+      25,    26,    27,    28
 };
 
 #if YYDEBUG
@@ -526,8 +530,8 @@ static const yytype_uint8 yyrline[] =
 {
        0,    68,    68,    69,    70,    71,    75,    76,    77,    78,
       79,    80,    81,    82,    83,    84,    85,    86,    87,    88,
-      89,    90,    91,    94,    95,    96,    97,    98,    99,   100,
-     101,   102,   103
+      89,    90,    91,    92,    93,    96,    97,    98,    99,   100,
+     101,   102,   103,   104,   105
 };
 #endif
 
@@ -539,9 +543,9 @@ static const char *const yytname[] =
   "$end", "error", "$undefined", "vaddition", "vsubtra", "vmultiple",
   "vload", "vstore", "vxor", "vrot", "vadditions", "vadditioni",
   "vsubtras", "vsubtrai", "vxors", "vxori", "vmultiples", "vmultiplei",
-  "vrotr", "smove", "vreg", "sreg", "immediate", "commentary", "number",
-  "vrepeat", "vendrepeat", "'\\n'", "','", "$accept", "line", "operation",
-  "instruccion", YY_NULLPTR
+  "vrotr", "smove", "vlrot", "vlrotr", "vreg", "sreg", "immediate",
+  "commentary", "number", "vrepeat", "vendrepeat", "'\\n'", "','",
+  "$accept", "line", "operation", "instruccion", YY_NULLPTR
 };
 #endif
 
@@ -552,14 +556,15 @@ static const yytype_uint16 yytoknum[] =
 {
        0,   256,   257,   258,   259,   260,   261,   262,   263,   264,
      265,   266,   267,   268,   269,   270,   271,   272,   273,   274,
-     275,   276,   277,   278,   279,   280,   281,    10,    44
+     275,   276,   277,   278,   279,   280,   281,   282,   283,    10,
+      44
 };
 # endif
 
-#define YYPACT_NINF -26
+#define YYPACT_NINF -28
 
 #define yypact_value_is_default(Yystate) \
-  (!!((Yystate) == (-26)))
+  (!!((Yystate) == (-28)))
 
 #define YYTABLE_NINF -1
 
@@ -570,11 +575,11 @@ static const yytype_uint16 yytoknum[] =
      STATE-NUM.  */
 static const yytype_int8 yypact[] =
 {
-     -25,   -26,     0,   -26,   -26,   -26,   -26,   -26,   -26,   -26,
-     -26,   -26,   -26,   -26,   -26,   -26,   -26,   -26,   -26,   -26,
-     -26,   -26,    -6,    -2,   -26,     7,    -3,   -26,   -26,     6,
-       8,     9,   -26,   -26,    13,    16,    19,    12,   -26,   -26,
-     -26,    10,   -26,   -26,   -26
+     -27,   -28,     0,   -28,   -28,   -28,   -28,   -28,   -28,   -28,
+     -28,   -28,   -28,   -28,   -28,   -28,   -28,   -28,   -28,   -28,
+     -28,   -28,   -28,   -28,    -6,    -2,   -28,     7,    -3,   -28,
+     -28,     6,     8,     9,   -28,   -28,    13,    16,    19,    12,
+     -28,   -28,   -28,    10,   -28,   -28,   -28
 };
 
   /* YYDEFACT[STATE-NUM] -- Default reduction number in state STATE-NUM.
@@ -582,23 +587,23 @@ static const yytype_int8 yypact[] =
      means the default is an error.  */
 static const yytype_uint8 yydefact[] =
 {
-       5,     4,     0,     1,    32,     6,     7,     8,     9,    10,
+       5,     4,     0,     1,    34,     6,     7,     8,     9,    10,
       11,    12,    13,    14,    15,    16,    17,    18,    19,    20,
-      21,    22,     0,     0,    30,     0,     0,     3,    29,     0,
-       0,     0,    31,     2,     0,     0,     0,     0,    27,    28,
-      26,     0,    23,    24,    25
+      21,    22,    23,    24,     0,     0,    32,     0,     0,     3,
+      31,     0,     0,     0,    33,     2,     0,     0,     0,     0,
+      29,    30,    28,     0,    25,    26,    27
 };
 
   /* YYPGOTO[NTERM-NUM].  */
 static const yytype_int8 yypgoto[] =
 {
-     -26,   -26,   -26,   -26
+     -28,   -28,   -28,   -28
 };
 
   /* YYDEFGOTO[NTERM-NUM].  */
 static const yytype_int8 yydefgoto[] =
 {
-      -1,     2,    25,    26
+      -1,     2,    27,    28
 };
 
   /* YYTABLE[YYPACT[STATE-NUM]] -- What to do in state STATE-NUM.  If
@@ -608,38 +613,38 @@ static const yytype_uint8 yytable[] =
 {
        3,     4,     1,     5,     6,     7,     8,     9,    10,    11,
       12,    13,    14,    15,    16,    17,    18,    19,    20,    21,
-      32,    27,    28,    22,    33,    23,    24,    29,    30,    31,
-      42,    43,    44,    37,    34,    38,    35,    36,    39,    40,
-      41
+      22,    23,    34,    29,    30,    24,    35,    25,    26,    31,
+      32,    33,    44,    45,    46,    39,    36,    40,    37,    38,
+      41,    42,    43
 };
 
 static const yytype_uint8 yycheck[] =
 {
-       0,     1,    27,     3,     4,     5,     6,     7,     8,     9,
+       0,     1,    29,     3,     4,     5,     6,     7,     8,     9,
       10,    11,    12,    13,    14,    15,    16,    17,    18,    19,
-      23,    27,    24,    23,    27,    25,    26,    20,    21,    22,
-      20,    21,    22,    20,    28,    22,    28,    28,    22,    20,
-      28
+      20,    21,    25,    29,    26,    25,    29,    27,    28,    22,
+      23,    24,    22,    23,    24,    22,    30,    24,    30,    30,
+      24,    22,    30
 };
 
   /* YYSTOS[STATE-NUM] -- The (internal number of the) accessing
      symbol of state STATE-NUM.  */
 static const yytype_uint8 yystos[] =
 {
-       0,    27,    30,     0,     1,     3,     4,     5,     6,     7,
+       0,    29,    32,     0,     1,     3,     4,     5,     6,     7,
        8,     9,    10,    11,    12,    13,    14,    15,    16,    17,
-      18,    19,    23,    25,    26,    31,    32,    27,    24,    20,
-      21,    22,    23,    27,    28,    28,    28,    20,    22,    22,
-      20,    28,    20,    21,    22
+      18,    19,    20,    21,    25,    27,    28,    33,    34,    29,
+      26,    22,    23,    24,    25,    29,    30,    30,    30,    22,
+      24,    24,    22,    30,    22,    23,    24
 };
 
   /* YYR1[YYN] -- Symbol number of symbol that rule YYN derives.  */
 static const yytype_uint8 yyr1[] =
 {
-       0,    29,    30,    30,    30,    30,    31,    31,    31,    31,
-      31,    31,    31,    31,    31,    31,    31,    31,    31,    31,
-      31,    31,    31,    32,    32,    32,    32,    32,    32,    32,
-      32,    32,    32
+       0,    31,    32,    32,    32,    32,    33,    33,    33,    33,
+      33,    33,    33,    33,    33,    33,    33,    33,    33,    33,
+      33,    33,    33,    33,    33,    34,    34,    34,    34,    34,
+      34,    34,    34,    34,    34
 };
 
   /* YYR2[YYN] -- Number of symbols on the right hand side of rule YYN.  */
@@ -647,8 +652,8 @@ static const yytype_uint8 yyr2[] =
 {
        0,     2,     3,     3,     1,     0,     1,     1,     1,     1,
        1,     1,     1,     1,     1,     1,     1,     1,     1,     1,
-       1,     1,     1,     6,     6,     6,     4,     4,     4,     2,
-       1,     2,     1
+       1,     1,     1,     1,     1,     6,     6,     6,     4,     4,
+       4,     2,     1,     2,     1
 };
 
 
@@ -1327,167 +1332,179 @@ yyreduce:
         case 6:
 #line 75 "vCompiler.y" /* yacc.c:1646  */
     {;}
-#line 1331 "y.tab.c" /* yacc.c:1646  */
+#line 1336 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 7:
 #line 76 "vCompiler.y" /* yacc.c:1646  */
     {;}
-#line 1337 "y.tab.c" /* yacc.c:1646  */
+#line 1342 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 8:
 #line 77 "vCompiler.y" /* yacc.c:1646  */
     {;}
-#line 1343 "y.tab.c" /* yacc.c:1646  */
+#line 1348 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 9:
 #line 78 "vCompiler.y" /* yacc.c:1646  */
     {;}
-#line 1349 "y.tab.c" /* yacc.c:1646  */
+#line 1354 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 10:
 #line 79 "vCompiler.y" /* yacc.c:1646  */
     {;}
-#line 1355 "y.tab.c" /* yacc.c:1646  */
+#line 1360 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 11:
 #line 80 "vCompiler.y" /* yacc.c:1646  */
     {;}
-#line 1361 "y.tab.c" /* yacc.c:1646  */
+#line 1366 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 12:
 #line 81 "vCompiler.y" /* yacc.c:1646  */
     {;}
-#line 1367 "y.tab.c" /* yacc.c:1646  */
+#line 1372 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 13:
 #line 82 "vCompiler.y" /* yacc.c:1646  */
     {;}
-#line 1373 "y.tab.c" /* yacc.c:1646  */
+#line 1378 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 14:
 #line 83 "vCompiler.y" /* yacc.c:1646  */
     {;}
-#line 1379 "y.tab.c" /* yacc.c:1646  */
+#line 1384 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 15:
 #line 84 "vCompiler.y" /* yacc.c:1646  */
     {;}
-#line 1385 "y.tab.c" /* yacc.c:1646  */
+#line 1390 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 16:
 #line 85 "vCompiler.y" /* yacc.c:1646  */
     {;}
-#line 1391 "y.tab.c" /* yacc.c:1646  */
+#line 1396 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 17:
 #line 86 "vCompiler.y" /* yacc.c:1646  */
     {;}
-#line 1397 "y.tab.c" /* yacc.c:1646  */
+#line 1402 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 18:
 #line 87 "vCompiler.y" /* yacc.c:1646  */
     {;}
-#line 1403 "y.tab.c" /* yacc.c:1646  */
+#line 1408 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 19:
 #line 88 "vCompiler.y" /* yacc.c:1646  */
     {;}
-#line 1409 "y.tab.c" /* yacc.c:1646  */
+#line 1414 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 20:
 #line 89 "vCompiler.y" /* yacc.c:1646  */
     {;}
-#line 1415 "y.tab.c" /* yacc.c:1646  */
+#line 1420 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 21:
 #line 90 "vCompiler.y" /* yacc.c:1646  */
     {;}
-#line 1421 "y.tab.c" /* yacc.c:1646  */
+#line 1426 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 22:
 #line 91 "vCompiler.y" /* yacc.c:1646  */
     {;}
-#line 1427 "y.tab.c" /* yacc.c:1646  */
+#line 1432 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 23:
-#line 94 "vCompiler.y" /* yacc.c:1646  */
-    {vInstruction((yyvsp[-5].id),(yyvsp[-4].id),(yyvsp[-2].id),(yyvsp[0].id));}
-#line 1433 "y.tab.c" /* yacc.c:1646  */
+#line 92 "vCompiler.y" /* yacc.c:1646  */
+    {;}
+#line 1438 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 24:
-#line 95 "vCompiler.y" /* yacc.c:1646  */
-    {vsInstruction((yyvsp[-5].id),(yyvsp[-4].id),(yyvsp[-2].id),(yyvsp[0].id));}
-#line 1439 "y.tab.c" /* yacc.c:1646  */
+#line 93 "vCompiler.y" /* yacc.c:1646  */
+    {;}
+#line 1444 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 25:
 #line 96 "vCompiler.y" /* yacc.c:1646  */
-    {viInstruction((yyvsp[-5].id),(yyvsp[-4].id),(yyvsp[-2].id),(yyvsp[0].id));}
-#line 1445 "y.tab.c" /* yacc.c:1646  */
+    {vInstruction((yyvsp[-5].id),(yyvsp[-4].id),(yyvsp[-2].id),(yyvsp[0].id));}
+#line 1450 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 26:
 #line 97 "vCompiler.y" /* yacc.c:1646  */
-    {viInstruction1((yyvsp[-3].id),(yyvsp[0].id),(yyvsp[-2].id));}
-#line 1451 "y.tab.c" /* yacc.c:1646  */
+    {vsInstruction((yyvsp[-5].id),(yyvsp[-4].id),(yyvsp[-2].id),(yyvsp[0].id));}
+#line 1456 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 27:
 #line 98 "vCompiler.y" /* yacc.c:1646  */
-    {viInstruction1((yyvsp[-3].id),(yyvsp[-2].id),(yyvsp[0].id));}
-#line 1457 "y.tab.c" /* yacc.c:1646  */
+    {viInstruction((yyvsp[-5].id),(yyvsp[-4].id),(yyvsp[-2].id),(yyvsp[0].id));}
+#line 1462 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 28:
 #line 99 "vCompiler.y" /* yacc.c:1646  */
-    {ssInstruction((yyvsp[-3].id),(yyvsp[-2].id),(yyvsp[0].id));}
-#line 1463 "y.tab.c" /* yacc.c:1646  */
+    {viInstruction1((yyvsp[-3].id),(yyvsp[0].id),(yyvsp[-2].id));}
+#line 1468 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 29:
 #line 100 "vCompiler.y" /* yacc.c:1646  */
-    {repeat((yyvsp[0].num));}
-#line 1469 "y.tab.c" /* yacc.c:1646  */
+    {viInstruction1((yyvsp[-3].id),(yyvsp[-2].id),(yyvsp[0].id));}
+#line 1474 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 30:
 #line 101 "vCompiler.y" /* yacc.c:1646  */
-    {endrepeat();}
-#line 1475 "y.tab.c" /* yacc.c:1646  */
+    {ssInstruction((yyvsp[-3].id),(yyvsp[-2].id),(yyvsp[0].id));}
+#line 1480 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 31:
 #line 102 "vCompiler.y" /* yacc.c:1646  */
-    {;}
-#line 1481 "y.tab.c" /* yacc.c:1646  */
+    {repeat((yyvsp[0].num));}
+#line 1486 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 32:
 #line 103 "vCompiler.y" /* yacc.c:1646  */
+    {endrepeat();}
+#line 1492 "y.tab.c" /* yacc.c:1646  */
+    break;
+
+  case 33:
+#line 104 "vCompiler.y" /* yacc.c:1646  */
+    {;}
+#line 1498 "y.tab.c" /* yacc.c:1646  */
+    break;
+
+  case 34:
+#line 105 "vCompiler.y" /* yacc.c:1646  */
     {yyerror("instruccion not supported");}
-#line 1487 "y.tab.c" /* yacc.c:1646  */
+#line 1504 "y.tab.c" /* yacc.c:1646  */
     break;
 
 
-#line 1491 "y.tab.c" /* yacc.c:1646  */
+#line 1508 "y.tab.c" /* yacc.c:1646  */
       default: break;
     }
   /* User semantic actions sometimes alter yychar, and that requires
@@ -1715,7 +1732,7 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 106 "vCompiler.y" /* yacc.c:1906  */
+#line 108 "vCompiler.y" /* yacc.c:1906  */
 
 
 extern int yyparse();
@@ -1781,6 +1798,8 @@ void viInstruction(std::string op,std::string vr,std::string v1,std::string imm)
         binary+="01101";
     }else if(op.compare("VROTR")==0 || op.compare("Vrotr")==0 || op.compare("vrotr")==0 || op.compare("VRotr")==0){
         binary+="01101";
+    }else if(op.compare("VLROTR")==0 || op.compare("Vlrotr")==0 || op.compare("vlrotr")==0 || op.compare("VLRotr")==0){
+        binary+="10010";
     }
     binary+=vectorReg(vr);
     binary+=vectorReg(v1);
@@ -1800,6 +1819,8 @@ void viInstruction1(std::string op,std::string vr,std::string imm){
         binary+="01111";
     }else if(op.compare("VROT")==0 || op.compare("Vrot")==0 || op.compare("vrot")==0 || op.compare("VRot")==0){
         binary+="01010";
+    }else if(op.compare("VLROT")==0 || op.compare("Vlrot")==0 || op.compare("vlrot")==0 || op.compare("VLRot")==0){
+        binary+="10001";
     }
     binary+=vectorReg(vr);
     binary+=getImm1(imm);

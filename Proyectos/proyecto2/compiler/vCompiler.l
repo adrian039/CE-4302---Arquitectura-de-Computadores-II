@@ -43,6 +43,8 @@ numero [a-fA-F0-9_]+
 (s|S)(m|M)(o|O)(v|V)          {yylval.id=strdup(yytext); return smove;} //smov = scalar move
 (r|R)(e|E)(p|P)(e|E)(a|A)(t|T) {yylval.id=strdup(yytext); return vrepeat;} //REPEAT
 (e|E)(n|N)(d|D)(r|R)(e|E)(p|P)(e|E)(a|A)(t|T) {yylval.id=strdup(yytext); return vendrepeat;} //REPEAT
+(v|V)(l|L)(r|R)(o|O)(t|T)          {yylval.id=strdup(yytext); return vlrot;} //vrot = vector rotation 
+(v|V)(l|L)(r|R)(o|O)(t|T)(r|R)     {yylval.id=strdup(yytext); return vlrotr;} //vrotr = vector rotation saving the result in other register
 
   /* Vector Registers*/
 (v|V)[0-9]?         {yylval.id=strdup(yytext); return vreg;} //vector registers
