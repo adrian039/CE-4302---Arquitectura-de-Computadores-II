@@ -18,6 +18,7 @@ void *Execution::start(void *ptr)
     while (1)
     {
         pthread_mutex_lock(&(inst->clk->clockMutex));
+        // pthread_mutex_lock(&(inst->executionMutex));
         pthread_cond_wait(&(inst->ctrl->controlExecutionCondMutex), &(inst->clk->clockMutex));
         //  pthread_cond_wait(&(inst->clk->clockCondMutex), &(inst->clk->clockMutex)); // ***** PIPELINE BEHAVIOR *****//
         std::cout<<"EXECUTION STARTED"<<std::endl;
@@ -50,15 +51,21 @@ void *Execution::start(void *ptr)
                 inst->alu4->dataA = inst->dataA4;
                 inst->alu4->dataB = inst->dataB4;
                 // pthread_cond_broadcast(&(inst->clk->clockAluCondMutex));
+                 std::cout<<"EMPIEZO OPERACION 1"<<std::endl;
                 pthread_cond_signal(&(inst->alu1->aluCondMutex));
                 pthread_cond_wait(&(inst->alu1->aluResultCondMutex), &(inst->clk->clockMutex));
+                std::cout<<"TERMINO ALU 1"<<std::endl;
                 pthread_cond_signal(&(inst->alu2->aluCondMutex));
                 pthread_cond_wait(&(inst->alu2->aluResultCondMutex), &(inst->clk->clockMutex));
+                std::cout<<"TERMINO ALU 2"<<std::endl;
                 pthread_cond_signal(&(inst->alu3->aluCondMutex));
                 pthread_cond_wait(&(inst->alu3->aluResultCondMutex), &(inst->clk->clockMutex));
+                std::cout<<"TERMINO ALU 3"<<std::endl;
                 pthread_cond_signal(&(inst->alu4->aluCondMutex));
                 pthread_cond_wait(&(inst->alu4->aluResultCondMutex), &(inst->clk->clockMutex));
-                sleep(0.5);
+                 std::cout<<"TERMINO OPERACION 1"<<std::endl;
+                //sleep(0.5);
+                //usleep(250000);
                 inst->result[0 + (i * 4)] = inst->alu1->result;
                 inst->result[1 + (i * 4)] = inst->alu2->result;
                 inst->result[2 + (i * 4)] = inst->alu3->result;
@@ -84,15 +91,21 @@ void *Execution::start(void *ptr)
                 inst->alu4->dataA = inst->dataA4;
                 inst->alu4->dataB = inst->scaDataB;
                 // pthread_cond_broadcast(&(inst->clk->clockAluCondMutex));
+                 std::cout<<"EMPIEZO OPERACION 2"<<std::endl;
                 pthread_cond_signal(&(inst->alu1->aluCondMutex));
                 pthread_cond_wait(&(inst->alu1->aluResultCondMutex), &(inst->clk->clockMutex));
+                std::cout<<"TERMINO ALU 1"<<std::endl;
                 pthread_cond_signal(&(inst->alu2->aluCondMutex));
                 pthread_cond_wait(&(inst->alu2->aluResultCondMutex), &(inst->clk->clockMutex));
+                 std::cout<<"TERMINO ALU 2"<<std::endl;
                 pthread_cond_signal(&(inst->alu3->aluCondMutex));
                 pthread_cond_wait(&(inst->alu3->aluResultCondMutex), &(inst->clk->clockMutex));
+                std::cout<<"TERMINO ALU 3"<<std::endl;
                 pthread_cond_signal(&(inst->alu4->aluCondMutex));
                 pthread_cond_wait(&(inst->alu4->aluResultCondMutex), &(inst->clk->clockMutex));
-                sleep(0.5);
+                 std::cout<<"TERMINO OPERACION 2"<<std::endl;
+                //sleep(0.5);
+                //usleep(250000);
                 inst->result[0 + (i * 4)] = inst->alu1->result;
                 inst->result[1 + (i * 4)] = inst->alu2->result;
                 inst->result[2 + (i * 4)] = inst->alu3->result;
@@ -103,6 +116,7 @@ void *Execution::start(void *ptr)
         inst->ctrl->stFlag = 0;
         // pthread_cond_wait(&(inst->clk->clockCondMutex), &(inst->clk->clockMutex)); // ***** PIPELINE BEHAVIOR *****//
         pthread_cond_signal(&(inst->clk->clockWritebackCondMutex));
+        // pthread_mutex_unlock(&(inst->executionMutex));
         pthread_mutex_unlock(&(inst->clk->clockMutex));
     }
 }

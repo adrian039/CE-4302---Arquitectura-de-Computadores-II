@@ -12,6 +12,7 @@
 #include <pthread.h>
 #include "clock.h"
 #include "instMem.h"
+#include "dataMem.h"
 #include "vectorRegisters.h"
 #include "scalarRegisters.h"
 #include "config.h"
@@ -31,7 +32,10 @@ public:
     int stFlag = 0;
     int scaMovFlag = 0;
     int pc = 0;
-    Control(Clock *clk_, InstMem *instMem_, VectorRegisters *vectRegs_, ScalarRegisters *scaRegs_);
+    int writeFlag=0;
+    DataMem *datMem;
+    Control(Clock *clk_, InstMem *instMem_, VectorRegisters *vectRegs_, ScalarRegisters *scaRegs_, DataMem *datMem_);
+    pthread_mutex_t controlMutex = PTHREAD_MUTEX_INITIALIZER;
     pthread_cond_t controlCondMutex = PTHREAD_COND_INITIALIZER;
     pthread_cond_t controlExecutionCondMutex = PTHREAD_COND_INITIALIZER;
 

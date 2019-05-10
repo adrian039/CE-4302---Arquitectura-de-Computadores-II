@@ -20,9 +20,11 @@ class DataMem
     int data=0;
     int index=0;
     int *dataMemory=(int*)calloc(2*262144, sizeof(int)); //4MB
+    pthread_mutex_t dataMemMutex = PTHREAD_MUTEX_INITIALIZER;
     pthread_cond_t dataMemCondMutex = PTHREAD_COND_INITIALIZER;
     pthread_cond_t dataMemReadMutex = PTHREAD_COND_INITIALIZER;
     pthread_cond_t dataMemWriteMutex = PTHREAD_COND_INITIALIZER;
+    pthread_cond_t dataMemFinishMutex = PTHREAD_COND_INITIALIZER;
 
   private:
     Clock *clk;

@@ -48,8 +48,10 @@ void *InstMem::start(void *ptr)
     InstMem *inst = (InstMem *)ptr;
     while (1)
     {
-        pthread_mutex_lock(&(inst->clk->clockMutex));
-        pthread_cond_wait(&(inst->instMemoryCondMutex), &(inst->clk->clockMutex));
+        // pthread_mutex_lock(&(inst->clk->clockMutex));
+        pthread_mutex_lock(&(inst->instMemMutex));
+        pthread_cond_wait(&(inst->instMemoryCondMutex), &(inst->instMemMutex));
+        // pthread_cond_wait(&(inst->instMemoryCondMutex), &(inst->clk->clockMutex));
         if (inst->write)
         {
             inst->writeInst(inst->data, inst->index);
@@ -59,6 +61,7 @@ void *InstMem::start(void *ptr)
             inst->data = inst->readInst(inst->index);
             pthread_cond_signal(&(inst->instMemoryReadMutex));
         }
-        pthread_mutex_unlock(&(inst->clk->clockMutex));
+        // pthread_mutex_unlock(&(inst->clk->clockMutex));
+        pthread_mutex_unlock(&(inst->instMemMutex));
     }
 }

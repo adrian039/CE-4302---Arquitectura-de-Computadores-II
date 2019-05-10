@@ -45,7 +45,8 @@ void *Clock::clockController(void *ptr)
             pthread_cond_signal(&(inst->clockCondMutex));
             // pthread_cond_broadcast(&(inst->clockCondMutex));
             pthread_mutex_unlock(&(inst->clockMutex));
-            sleep(1);
+             usleep(100000);
+            // sleep(1);
         }
         else
         {

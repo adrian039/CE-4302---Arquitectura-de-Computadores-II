@@ -21,6 +21,7 @@ public:
   int data = 0;
   int index = 0;
   int *instMemory = (int *)calloc(262144, sizeof(int)); //1MB
+  pthread_mutex_t instMemMutex = PTHREAD_MUTEX_INITIALIZER;
   pthread_cond_t instMemoryCondMutex = PTHREAD_COND_INITIALIZER;
   pthread_cond_t instMemoryReadMutex = PTHREAD_COND_INITIALIZER;
 

@@ -227,7 +227,7 @@ void endrepeat(){
         for(int j=0; j<counter; j++){
             std::string data=(std::string) inst[j];
             if(data.substr(0,5).compare("01110")==0 || data.substr(0,5).compare("01111")==0){
-                std::string imme=data.substr(11,14);
+                std::string imme=data.substr(10,14);
                 int i = std::stoi(imme, nullptr, 2);
                 i+=dirSteps;
                 data.erase(11,14);

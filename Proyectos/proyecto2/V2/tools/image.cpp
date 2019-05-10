@@ -8,7 +8,7 @@
 #define TRUE 1;
 
 //Variables
-int numberOfColumns, numberOfRows, numberOfBands, highVal, totalPixels, header, highHisto;
+int numberOfColumns, numberOfRows, numberOfBands, highVal, totalPixels, header;
 unsigned char *image;
 
 //Funciones
@@ -89,7 +89,10 @@ void readImage(char **argv, int k)
             break;
         }
     totalPixels = numberOfRows * numberOfColumns;
-    std::cout<<totalPixels<<std::endl;
+    std::cout<<"Rows: "<<numberOfRows<<std::endl;
+    std::cout<<"Columns: "<<numberOfColumns<<std::endl;
+    std::cout<<"Total Pixels: "<<totalPixels<<std::endl;
+    std::cout<<"High Value: "<<highVal<<std::endl;
     int pixels[numberOfRows][numberOfColumns];
     image = (unsigned char *)malloc(totalPixels);
     fread(image, 1, totalPixels, fpIn);

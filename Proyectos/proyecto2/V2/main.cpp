@@ -23,7 +23,7 @@ int main()
     Alu *alu4 = new Alu(clk);
     VectorRegisters *vectReg = new VectorRegisters(clk);
     ScalarRegisters *scaReg = new ScalarRegisters(clk);
-    Control *control = new Control(clk, instMem, vectReg, scaReg);
+    Control *control = new Control(clk, instMem, vectReg, scaReg, dataMem);
     Execution *execution = new Execution(clk, control, alu1, alu2, alu3, alu4);
     Writeback *writeback = new Writeback(clk, control, execution, vectReg, scaReg, dataMem);
     return 0;

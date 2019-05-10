@@ -21,9 +21,11 @@ class VectorRegisters
     int *value=(int*)calloc(8, sizeof(int));
     int read = 0;
     VectorRegisters(Clock *clk);
+    pthread_mutex_t vectorRegisterMutex = PTHREAD_MUTEX_INITIALIZER;
     pthread_cond_t vectorRegisterCondMutex = PTHREAD_COND_INITIALIZER;
     pthread_cond_t vectorRegisterWriteMutex = PTHREAD_COND_INITIALIZER;
     pthread_cond_t vectorRegisterReadMutex = PTHREAD_COND_INITIALIZER;
+    pthread_cond_t vectorRegisterFinishMutex = PTHREAD_COND_INITIALIZER;
     int vectorRegs[10][8];
 
   private:

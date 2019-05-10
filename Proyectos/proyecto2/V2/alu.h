@@ -19,6 +19,7 @@ class Alu
     int dataA=0;
     int dataB=0;
     int result=0;
+    pthread_mutex_t aluMutex = PTHREAD_MUTEX_INITIALIZER;
     pthread_cond_t aluCondMutex = PTHREAD_COND_INITIALIZER;
     pthread_cond_t aluResultCondMutex = PTHREAD_COND_INITIALIZER;
 
@@ -29,6 +30,7 @@ class Alu
     int vxor(unsigned char dataA, unsigned char dataB);
     int vmul(unsigned char dataA, unsigned char dataB);
     int vrot(unsigned char dataA, int number);
+    int vlrot(unsigned char dataA, int number);
     pthread_t threadAlu;
     static void *start(void *ptr);
 };

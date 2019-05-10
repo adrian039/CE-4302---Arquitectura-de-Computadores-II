@@ -46,18 +46,24 @@ void *DataMem::start(void *ptr)
     DataMem *inst = (DataMem *)ptr;
     while (1)
     {
-        pthread_mutex_lock(&(inst->clk->clockMutex));
-        pthread_cond_wait(&(inst->dataMemCondMutex), &(inst->clk->clockMutex));
+        // pthread_mutex_lock(&(inst->clk->clockMutex));
+        pthread_mutex_lock(&(inst->dataMemMutex));
+        // pthread_cond_wait(&(inst->dataMemCondMutex), &(inst->clk->clockMutex));
+        pthread_cond_wait(&(inst->dataMemCondMutex), &(inst->dataMemMutex));
         if (inst->write)
         {
             inst->writeData(inst->data, inst->index);
-            pthread_cond_signal(&(inst->dataMemWriteMutex));
+           // std::cout<<"JO"<<std::endl;
+            // pthread_cond_signal(&(inst->dataMemWriteMutex));
         }
         else
         {
             inst->data = inst->readData(inst->index);
-            pthread_cond_signal(&(inst->dataMemReadMutex));
+           //  std::cout<<"JA"<<std::endl;
+            // pthread_cond_signal(&(inst->dataMemReadMutex));
         }
-        pthread_mutex_unlock(&(inst->clk->clockMutex));
+        pthread_cond_signal(&(inst->dataMemFinishMutex));
+        // pthread_mutex_unlock(&(inst->clk->clockMutex));
+        pthread_mutex_unlock(&(inst->dataMemMutex));
     }
 }

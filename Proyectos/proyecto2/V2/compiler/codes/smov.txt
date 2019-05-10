@@ -1,0 +1,3 @@
+SMOV S1, #15
+VLD V1, #0x0
+VXORS V3, V1, S1

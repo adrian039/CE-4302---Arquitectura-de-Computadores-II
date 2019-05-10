@@ -14,6 +14,7 @@
 #include "execution.h"
 #include "control.h"
 #include "writeback.h"
+#include "dataMem.h"
 #include "config.h"
 
 class Writeback
@@ -21,6 +22,7 @@ class Writeback
 public:
     int resultReg = 0;
     Writeback(Clock *clk_, Control *ctrl_, Execution *exe_, VectorRegisters *vecRegs_, ScalarRegisters *scaRegs_, DataMem *dataMem_);
+    pthread_mutex_t writebackMutex = PTHREAD_MUTEX_INITIALIZER;
     pthread_cond_t writebackCondMutex = PTHREAD_COND_INITIALIZER;
 
 private:
