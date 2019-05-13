@@ -10,25 +10,25 @@ VectorRegisters::VectorRegisters(Clock *clk_)
 }
 
 int *VectorRegisters::readVector(int index)
-{   std::cout<<"EMPIEZO A LEER"<<std::endl;
+{   //std::cout<<"EMPIEZO A LEER"<<std::endl;
     int *data=(int*)calloc(8, sizeof(int));
     for (int i = 0; i < 8; i++)
     {
         data[i] = vectorRegs[index][i];
     }
-     std::cout<<"TERMINO"<<std::endl;
+    // std::cout<<"TERMINO"<<std::endl;
     return data;
 }
 
 void VectorRegisters::writeVector(int *data, int index)
 {
-     std::cout<<"EMPIEZO A ESCRIBIR"<<std::endl;
+    // std::cout<<"EMPIEZO A ESCRIBIR"<<std::endl;
     for (int i = 0; i < 8; i++)
     {
         //std::cout<<"DATA "<<i<<": "<<data[i]<<std::endl;
         vectorRegs[index][i] = data[i];
     }
-     std::cout<<"TERMINO"<<std::endl;
+   //  std::cout<<"TERMINO"<<std::endl;
 }
 
 void *VectorRegisters::start(void *ptr)
@@ -55,6 +55,6 @@ void *VectorRegisters::start(void *ptr)
         // pthread_mutex_unlock(&(inst->clk->clockMutex));
        // pthread_cond_signal(&(inst->vectorRegisterFinishMutex));
         pthread_mutex_unlock(&(inst->vectorRegisterMutex));
-        //std::cout<<"SALGO DEL VECTOR"<<std::endl;
+      //  std::cout<<"SALGO DEL VECTOR"<<std::endl;
     }
 }

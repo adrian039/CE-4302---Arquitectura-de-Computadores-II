@@ -28,6 +28,7 @@ void *Clock::startClock(void *ptr)
         std::cout << "\n";
         std::cout << "******* Ciclo: " + std::to_string(inst->counter) << " *********" << std::endl;
         pthread_cond_signal(&(inst->clockControlCondMutex));
+        pthread_cond_signal(&(inst->clockFileCondMutex));
         // pthread_cond_broadcast(&(inst->clockExecuteCondMutex));
         // pthread_cond_broadcast(&(inst->clockWritebackCondMutex));
         pthread_mutex_unlock(&(inst->clockMutex));

@@ -28,6 +28,7 @@ public:
   pthread_cond_t memoriesDataInitMutex = PTHREAD_COND_INITIALIZER;
   pthread_cond_t clockExecuteCondMutex = PTHREAD_COND_INITIALIZER;
   pthread_cond_t clockControlWriteMutex = PTHREAD_COND_INITIALIZER;
+  pthread_cond_t clockFileCondMutex = PTHREAD_COND_INITIALIZER;
 
 private:
   static void *startClock(void *ptr);

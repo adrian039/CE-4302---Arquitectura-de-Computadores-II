@@ -1,0 +1,2 @@
+VLD V1, #0x0
+VXORI V2, V1, #0x5

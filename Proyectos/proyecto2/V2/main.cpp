@@ -8,6 +8,7 @@
 #include "execution.cpp"
 #include "control.cpp"
 #include "writeback.cpp"
+#include "fileWriter.cpp"
 // #include "tools/instTool.h"
 // #include "tools/instTool.cpp"
 
@@ -26,5 +27,6 @@ int main()
     Control *control = new Control(clk, instMem, vectReg, scaReg, dataMem);
     Execution *execution = new Execution(clk, control, alu1, alu2, alu3, alu4);
     Writeback *writeback = new Writeback(clk, control, execution, vectReg, scaReg, dataMem);
+    FileWriter *file =new FileWriter(clk, scaReg, vectReg, instMem, dataMem, alu1);
     return 0;
 }

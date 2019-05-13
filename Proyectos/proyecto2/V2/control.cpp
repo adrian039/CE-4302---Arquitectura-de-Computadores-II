@@ -43,6 +43,7 @@ void *Control::start(void *ptr)
             std::cout << "DECODE STARTED" << std::endl;
             if (opcode == 0 || opcode == 3 || opcode == 6 || opcode == 9)
             {
+                std::cout<<"VADD"<<std::endl;
                 inst->vectorFlag = 1;
                 datA = inst->getData(instruction.substr(10, 5));
                 datB = inst->getData(instruction.substr(15, 5));
@@ -257,9 +258,9 @@ void *Control::start(void *ptr)
             // instructions completed!
         }
         inst->pc++;
-        std::cout<<"ESPERO"<<std::endl;
+        // std::cout<<"ESPERO"<<std::endl;
         pthread_cond_wait(&(inst->controlCondMutex), &(inst->clk->clockMutex));
-        std::cout<<"SALI"<<std::endl;
+        // std::cout<<"SALI"<<std::endl;
         //  pthread_mutex_unlock(&(inst->controlMutex));
         pthread_mutex_unlock(&(inst->clk->clockMutex));
     }

@@ -46,7 +46,7 @@ int Alu::vrot(unsigned char dataA, int number)
 
 int Alu::vlrot(unsigned char dataA, int number)
 {
-    std::cout<<"VLROT"<<std::endl;
+    // std::cout<<"VLROT"<<std::endl;
     unsigned char res = (dataA << number) | (dataA >> (8 - number));
     return (int)res;
 }
@@ -85,6 +85,6 @@ void *Alu::start(void *ptr)
         pthread_cond_signal(&(inst->aluResultCondMutex));
         pthread_mutex_unlock(&(inst->aluMutex));
         // pthread_mutex_unlock(&(inst->clk->clockMutex));
-      //  std::cout<<"EMPIEZO"<<std::endl;
+    //    std::cout<<"EMPIEZO"<<std::endl;
     }
 }
